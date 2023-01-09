@@ -11,7 +11,7 @@ const Index: React.FC<{}> = () => {
     return <>
         <Head>
             <link rel="icon" href="/favicon.png" />
-            <title>etna</title>
+            <title>chord-note</title>
             {/* <meta name="viewport" content=""></meta> */}
 
             {/* <meta name="twitter:card" content="summary" />

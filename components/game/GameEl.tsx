@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import conf from "../../game/conf";
 import { Gctx } from "../../game/Gctx";
-import { View } from "./UI/View";
+import { Main } from "./UI/Main";
 
 
 export const GameEl: React.FC<{}> = () => {
@@ -31,15 +31,7 @@ export const GameEl: React.FC<{}> = () => {
     }}>
             <div className="flex-1"></div>
             <div className="flex-0">
-                <div className="mx-auto noselect border border-black"
-                    style={{
-                        position: 'relative',
-                        width: conf.screen.w + 2,
-                        height: conf.screen.h + 2
-                    }}
-                >
-                    {state.gctx ? <View gctx={state.gctx} /> : null}
-                </div>
+                {state.gctx ? <Main gctx={state.gctx} /> : null}
             </div>
 
             <div className="" style={{
