@@ -1,4 +1,5 @@
 import { ChordData } from "./lib/chords"
+import { downloadText } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
@@ -20,6 +21,10 @@ export class Gctx {
             return textToScore(line.trim(), i)
         })
         this.score = lines
+    }
+
+    downloadText() {
+        downloadText('コード譜.txt', this.text)
     }
 
     setText(text: string) {

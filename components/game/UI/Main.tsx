@@ -13,7 +13,7 @@ export const Main: React.FC<{
     const gctx = props.gctx
 
 
-    return <div className="pt-4 px-2">
+    return <div className="pt-4 px-2 pb-16 max-w-3xl mx-auto">
         <div className="text-2xl">
             コード譜作成
         </div>
@@ -23,6 +23,13 @@ export const Main: React.FC<{
         <div>
             {/* <div className="text-sm">コードネームを半角スペース区切りで入力してください</div> */}
             <TextField gctx={gctx} />
+            <div style={{
+                marginTop: -6
+            }}>
+                <button className="text-sm text-blue-700" onClick={()=>{
+                    gctx.downloadText()
+                }}>テキストファイルとしてダウンロード</button>
+            </div>
         </div>
         <div>
             <Score gctx={gctx} />

@@ -13,7 +13,7 @@ export const Score: React.FC<{
 
     if (!gctx.score) return null
 
-    return <div className="pt-10 noselect" style={{
+    return <div className="noselect" style={{
         marginLeft: -5,
         marginRight: -5,
         marginTop: 70,
@@ -30,6 +30,7 @@ export const Score: React.FC<{
                     // top: 20,
                     // lineHeight: 3,
                     // height: 45,
+                    lineHeight: '80px'
                 }}>
                     {scoreElement.text}
                 </div>                

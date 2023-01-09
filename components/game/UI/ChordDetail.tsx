@@ -11,6 +11,7 @@ import { keyidToPitch } from '../../../game/lib/sound/keyIdToPitch'
 import { ChordImage } from './ChordImage'
 import { removeItemOnce } from '../../../game/lib/array'
 import { removeParenthes, ScoreElementChord } from '../../../game/lib/score'
+import { CloseIcon } from '../../icons/CloseIcon'
 
 
 
@@ -42,13 +43,36 @@ export const ChordDetail: React.FC<{
     const chord = guitarChords.getChordByName(gctx.chordDetail.text)
     return (
         <div 
+        className='p-1 relative'
             // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
                 border: 'solid 1px black'
             }}
         >
-            <div>
-                {chord2displayName(chord)}
+            <div className="prevent-shot" style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                padding: 5,
+                marginRight: 0,
+                marginTop: 0,
+                width: 44,
+                height: 44,
+                cursor: 'pointer',
+                background: '#ddd'
+            }} onClick={(e) => {
+                e.stopPropagation()
+                gctx.chordDetail = null
+                gctx.rerenderUI()
+            }}>
+                <CloseIcon />
+            </div>
+            
+            <div className='p-1  mx-2'>
+                <span className='text-xl font-bold'>
+                    {chord2displayName(chord)}
+                </span>
+                の詳細
             </div>
             <div className="">
                 {chord.positions.map((position, i) =>{

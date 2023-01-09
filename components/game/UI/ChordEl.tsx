@@ -15,7 +15,9 @@ export const ChordEl: React.FC<{
     const chord = guitarChords.getChordByName(props.scoreElementChord.text)
     let variation = 0
 
-    console.log(props.scoreElementChord.variation)
+    const isDetailOpened = gctx.chordDetail === props.scoreElementChord
+
+    // console.log(props.scoreElementChord.variation)
     if (typeof props.scoreElementChord.variation === 'number' && props.scoreElementChord.variation % 1 === 0 && 0 < props.scoreElementChord.variation && props.scoreElementChord.variation < chord.positions.length) {
         variation = props.scoreElementChord.variation
         console.log('nyaaaa')
@@ -37,7 +39,8 @@ export const ChordEl: React.FC<{
         width: 60,
         left: 20,
         bottom: 10,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        backgroundColor: isDetailOpened ? '#ddd' : 'transparent',
     }}
     onClick={() => {
         gctx.chordDetail = props.scoreElementChord
