@@ -10,35 +10,30 @@ export const GameEl: React.FC<{}> = () => {
     }>({
         gctx: null
     })
-    
+
     const [_, setState0] = useState<{}>({})
-    
+
     function rerenderUI() {
         setState0(state => ({ ...state }))
     }
 
     useEffect(() => {
-         setState(state => ({
+        setState(state => ({
             gctx: new Gctx(rerenderUI)
         }))
     }, [])
-    
-    
+
+
     return <>
-    <div className="flex flex-col" style={{
-        height: '100%',
-        width: '100%',
-    }}>
-            <div className="flex-1"></div>
-            <div className="flex-0">
+        <div className="" style={{
+            height: '100%',
+            width: '100%',
+        }}>
+            <div className="">
                 {state.gctx ? <Main gctx={state.gctx} /> : null}
             </div>
 
-            <div className="" style={{
-                flex: '2 1 0%'
-            }}></div>
+        </div>
 
-    </div>
-        
     </>
 }

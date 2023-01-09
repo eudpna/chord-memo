@@ -10,6 +10,7 @@ import { ChordEl } from './ChordEl'
 import { keyidToPitch } from '../../../game/lib/sound/keyIdToPitch'
 import { ChordImage } from './ChordImage'
 import { removeItemOnce } from '../../../game/lib/array'
+import { removeParenthes, ScoreElementChord } from '../../../game/lib/score'
 
 
 
@@ -59,6 +60,7 @@ export const ChordDetail: React.FC<{
                             height: 70,
                             width: 60,
                             marginRight: 8,
+
                         }}>
                             <ChordImage gctx={props.gctx} chord={chord} variation={i} noName />
                         </div>
@@ -97,7 +99,10 @@ export const ChordDetail: React.FC<{
                             {isSelected ? 
                                 <button className='rounded  py-1 mt-3' style={{
                                     width: 80,
-                                    border: 'solid 1px black',
+                                    borderStyle: 'solid',
+                                    borderWidth: '1px',
+                                    color: theGreen,
+                                    borderColor: theGreen
                                 }}>
                                     選択中
                                 </button>
@@ -105,7 +110,32 @@ export const ChordDetail: React.FC<{
                             <button className='rounded  py-1 mt-3' style={{
                                 width: 80,
                                 border: 'solid 1px black',
-                            }}>
+                            }}
+                            onClick={() => {
+                                const p = gctx.chordDetail.pointer
+                                const line = gctx.text.split('\n')[p.line];
+                                let newStr = `[${gctx.chordDetail.text}(${i})]`
+                                if (i===0) {
+                                    newStr = newStr.replace('(0)', '')
+                                }
+                                const newLine = strSplice(line, p.start, p.end-p.start, newStr)
+                                // console.log(gctx.chordDetail.text)
+                                // console.log(newLine)
+                                // console.log(`[${gctx.chordDetail.text}(${i})]`)
+                                const tmp = gctx.text.split('\n')
+                                gctx.text = [...(tmp.slice(0, p.line)),
+                                (newLine), ...(tmp.slice(p.line+1))].join(`\n`)
+
+                                console.log(gctx.text)
+                                // gctx.text = newLine + '\n' + gctx.text.split('\n').slice(1).join('\n')
+                                gctx.makeScore()
+                                const thisChord = gctx.score[p.line].filter(e => {
+                                    return e.type === 'chord' && e.pointer.start === p.start
+                                })[0]
+                                gctx.chordDetail = thisChord as ScoreElementChord
+                                gctx.rerenderUI()
+                            }}
+                            >
                                 選択
                             </button>}
                             
@@ -126,3 +156,16 @@ function chord2displayName(chord: ChordType): string {
     if (chord.suffix === 'M') return chord.key
     return chord.key + chord.suffix
 }
+
+export function strInsert(str: string, index: number, text: string) {
+    const res = str.slice(0, index) + text + str.slice(index);
+    return res;
+};
+
+export function strSplice(str: string, start: number, len: number, text: string) {
+    const res = str.slice(0, start) + text + str.slice(start+len);
+    return res;
+};
+
+const theGreen = '#4ade80'
+const thinGreen = '#bbf7d0'

@@ -6,6 +6,11 @@ export type ScoreElementChord = {
     type: 'chord'
     text: string
     variation: number
+    pointer: {
+        line: number
+        start: number
+        end: number
+    }
 }
 
 export type ScoreElementLyric = {
@@ -17,7 +22,7 @@ export type Score = ScoreElement[]
 
 
 
-export function textToScore(text: string): Score {
+export function textToScore(text: string, line: number): Score {
     const tmp = text.matchAll(/\[.*?\]/g)
 
     const ms = Array.from(tmp)
@@ -30,7 +35,17 @@ export function textToScore(text: string): Score {
         }
     }).map(m => {
         const lyric = text.substring(x, m.index)
-        const chord = text.substring(m.index, m.index + m.text.length).replaceAll('[', '').replaceAll(']', '')
+        let chord = text.substring(m.index, m.index + m.text.length).replaceAll('[', '').replaceAll(']', '')
+
+        // variation
+        const vm = chord.match(/\((.*?)\)/)
+        let variation = 0
+        if (vm) {
+            console.log(vm[0])
+            variation = Number(vm[1])
+            chord = removeParenthes(chord)
+        }
+
         result.push({
             type: 'lyric',
             text: lyric,
@@ -38,7 +53,12 @@ export function textToScore(text: string): Score {
         result.push({
             type: 'chord',
             text: chord,
-            variation: 0
+            variation: variation,
+            pointer: {
+                line: line,
+                start: m.index,
+                end: m.index + m.text.length
+            }
         })
         x = m.index + m.text.length
     })
@@ -50,4 +70,12 @@ export function textToScore(text: string): Score {
     
 
     return result
+}
+
+export function removeParenthes(text: string) {
+    const m = text.match(/\(.*?\)/)
+    if (m) {
+        return text.replace(m[0], '')
+    }
+    return text
 }

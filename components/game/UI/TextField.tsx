@@ -8,7 +8,8 @@ export const TextField: React.FC<{
 
     return <div className="border border-gray-500 rounded">
         <TextareaAutosize 
-        placeholder="例：CM7 G# Bbm Fsus2 ..."
+            value={gctx.text}
+        placeholder="歌詞とコードを入力"
         className="p-1 pb-0 resize-none w-full" style={{
             lineHeight: 1.2
         }} minRows={2} onChange={(e) => {
@@ -16,6 +17,6 @@ export const TextField: React.FC<{
             console.log('chage')
             gctx.rerenderUI()
             gctx.makeScore()
-        }}>{gctx.text}</TextareaAutosize>
+        }}></TextareaAutosize>
     </div>
 }

@@ -13,19 +13,37 @@ export const ChordEl: React.FC<{
 }> = (props) => {
     const gctx = props.gctx
     const chord = guitarChords.getChordByName(props.scoreElementChord.text)
-    return <div className=" inline-block rounded cursor-pointer absolute" style={{
+    let variation = 0
+
+    console.log(props.scoreElementChord.variation)
+    if (typeof props.scoreElementChord.variation === 'number' && props.scoreElementChord.variation % 1 === 0 && 0 < props.scoreElementChord.variation && props.scoreElementChord.variation < chord.positions.length) {
+        variation = props.scoreElementChord.variation
+        console.log('nyaaaa')
+    }
+
+    if (!chord) return <div className="font-bold inline-block rounded   absolute text-sm" style={{
         marginRight: -10,
         marginLeft: -10,
         width: 60,
         left: 20,
         bottom: 10,
         // backgroundColor: state.sounds.length !== 0 ? '#ddd' : 'transparent'
+    }}>
+        {props.scoreElementChord.text}
+    </div>
+    return <div className=" inline-block rounded  absolute" style={{
+        marginRight: -10,
+        marginLeft: -10,
+        width: 60,
+        left: 20,
+        bottom: 10,
+        cursor: 'pointer'
     }}
     onClick={() => {
         gctx.chordDetail = props.scoreElementChord
         gctx.rerenderUI()
     }}
     >
-        <ChordImage  gctx={gctx} chord={chord} variation={props.scoreElementChord.variation} />
+        <ChordImage  gctx={gctx} chord={chord} variation={variation} />
     </div>
 }

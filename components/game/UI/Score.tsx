@@ -25,7 +25,7 @@ export const Score: React.FC<{
     }}>
         {line.map((scoreElement, index) => {
             if (scoreElement.type === 'lyric') {
-                return <div className="font-bold inline-block text-sm" style={{
+                return <div key={index} className="font-bold inline-block text-sm" style={{
                     color: '#a33c3c',
                     // top: 20,
                     // lineHeight: 3,

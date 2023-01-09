@@ -16,8 +16,8 @@ export class Gctx {
     playingChords: string[] = []
 
     makeScore() {
-        const lines = this.text.trim().split('\n').map(line => {
-            return textToScore(line.trim())
+        const lines = this.text.trim().split('\n').map((line, i) => {
+            return textToScore(line.trim(), i)
         })
         this.score = lines
     }
