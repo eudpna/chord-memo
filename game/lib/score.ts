@@ -1,5 +1,15 @@
-export type ScoreElement = {
-    type: 'chord' | 'lyric'
+export type ScoreElement = ScoreElementChord | ScoreElementLyric
+
+
+
+export type ScoreElementChord = {
+    type: 'chord'
+    text: string
+    variation: number
+}
+
+export type ScoreElementLyric = {
+    type: 'lyric'
     text: string
 }
 
@@ -27,7 +37,8 @@ export function textToScore(text: string): Score {
         })
         result.push({
             type: 'chord',
-            text: chord
+            text: chord,
+            variation: 0
         })
         x = m.index + m.text.length
     })

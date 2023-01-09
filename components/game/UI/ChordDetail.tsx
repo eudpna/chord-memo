@@ -3,9 +3,12 @@ import Chord from '@tombatossals/react-chords/lib/Chord'
 import instruments from '@tombatossals/chords-db/lib/instruments.json'
 import React, { useState, useEffect, useRef } from 'react'
 import { Gctx } from '../../../game/Gctx'
-import { ChordType } from '../../../game/lib/chords'
+import { ChordType, guitarChords } from '../../../game/lib/chords'
 // import { ChordType, name2url } from "../../../lib/chords"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
+import { ChordEl } from './ChordEl'
+import { keyidToPitch } from '../../../game/lib/sound/keyIdToPitch'
+import { ChordImage } from './ChordImage'
 
 
 
@@ -23,62 +26,6 @@ export const ukuleleInstrument = {
     }
 }
 
-export const Position: React.FC<{
-    gctx: Gctx
-    position: ChordType['positions'][number]
-}> = (props) => {
-
-    const ref = useRef<HTMLDivElement>(null)
-
-    // 線を太くして見やすく（改造）
-    useEffect(() => {
-        const root = ref.current
-        // const path = root.firstChild.firstChild.firstChild.firstChild as SVGPathElement
-        // const circles = root.getElementsByTagName('circle')
-        const texts = root.getElementsByTagName('text')
-        Array.from(texts).map(text => {
-            if (text.getAttribute('font-size') === '3pt') {
-                text.setAttribute('font-size', '5px')
-            }
-        })
-        // Array.from(circles).map(circle => {
-        //     // const text = circle.getElementsByTagName('text')
-        //     const text = circle.nextSibling as Element
-        //     if (text) {
-        //         text.setAttribute('font-size', '5px')
-        //     }
-            
-        //     // Array.from(text).map(text => {
-        //     //     text.setAttribute('font-size', '5px')
-        //     // })
-        // })
-        // // path.setAttribute('stroke-width', '0.75')
-    }, []);
-
-    return <div>
-        <div
-        ref={ref}
-         style={{
-            width: 160,
-        }}>
-            {/* <Chord
-                chord={props.position}
-                instrument={props.gctx.instrument === 'guitar' ? guitarInstrument : ukuleleInstrument}
-            /> */}
-            <ChordImg chord={props.position}
-                instrument={guitarInstrument}
-                lite
-            />
-        </div>
-        <button onClick={() => {
-            props.gctx.playSounds(props.position.midi)
-        }}>
-            音を再生
-        </button>
-        
-    </div>
-}
-
 export const ChordDetail: React.FC<{
     gctx: Gctx
 }> = (props) => {
@@ -88,27 +35,70 @@ export const ChordDetail: React.FC<{
 
     if (!gctx.chordDetail) return null
 
-    const c = gctx.chordDetail
-    const positions = c.positions
-
+    // const c = gctx.chordDetail
+    // const positions = c.positions
+    const chord = guitarChords.getChordByName(gctx.chordDetail.text)
     return (
-        <div key={gctx.instrument + c.key + c.suffix}
+        <div 
             // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
                 border: 'solid 1px black'
             }}
-            onClick={(e) => {
-
-            }}
         >
             <div>
-                {chord2displayName(c)}
+                {chord2displayName(chord)}
             </div>
             <div className="">
-                {positions.map((p, i) =>
-                    <div key={i} >
-                        <Position gctx={gctx} position={p} />
-                    </div>)
+                {chord.positions.map((position, i) =>{
+                    const isSelected = gctx.chordDetail.variation === i
+                    return <div key={i} className="flex">
+                        <div className='relative inline-block' style={{
+                            height: 70,
+                            width: 60,
+                            marginRight: 8,
+                        }}>
+                            <ChordImage gctx={props.gctx} chord={chord} variation={i} noName />
+                        </div>
+                       
+                        <div className='inline-block' style={{
+                            // width: 'full',
+                            marginTop: 10,
+                            width: 180,
+                        }}>
+                            <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
+                                border: 'solid black 1px'
+                            }} onClick={() => {
+                                props.gctx.playSounds(position.midi)
+                            }}>
+                                音を再生
+                            </button>
+                            <div className='text-sm'>
+                                構成音: {position.midi.map(num => {
+                                    const pitch = keyidToPitch(num)
+                                    // return String(pitch.octave) + pitch.solfa + ' '
+                                    return pitch.solfa + ' '
+                                })}
+                            </div>
+                        </div>
+                        <div>
+                            {isSelected ? 
+                                <button className='rounded  py-1 mt-3' style={{
+                                    width: 80,
+                                    border: 'solid 1px black',
+                                }}>
+                                    選択中
+                                </button>
+                            : 
+                            <button className='rounded  py-1 mt-3' style={{
+                                width: 80,
+                                border: 'solid 1px black',
+                            }}>
+                                選択
+                            </button>}
+                            
+                        </div>
+                       
+                    </div>})
                 }
             </div>
 

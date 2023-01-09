@@ -34,13 +34,14 @@ export const Score: React.FC<{
                     {scoreElement.text}
                 </div>                
             }
-            const chord = guitarChords.getChordByName(scoreElement.text)
+
             return <span key={index} className="inline-block relative" style={{
                 height: 0,
                 width: 40,
                 marginLeft: 10,
+                
             }}>
-                <ChordEl gctx={props.gctx} index={index} chord={chord} />
+                <ChordEl gctx={props.gctx} scoreElementChord={scoreElement} />
             </span>
         }
             

@@ -1,5 +1,5 @@
 import { ChordData } from "./lib/chords"
-import { Score, textToScore } from "./lib/score"
+import { Score, ScoreElementChord, textToScore } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
 export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano' 
@@ -12,7 +12,7 @@ export class Gctx {
     soundType: SoundType = 'guitar'
     score: Score[]
     instrument: 'guitar' | 'ukulele' = 'ukulele'
-    chordDetail: null | ChordData = null
+    chordDetail: null | ScoreElementChord = null
 
     makeScore() {
         const lines = this.text.trim().split('\n').map(line => {
