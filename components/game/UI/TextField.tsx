@@ -16,6 +16,6 @@ export const TextField: React.FC<{
             console.log('chage')
             gctx.rerenderUI()
             gctx.makeScore()
-        }}></TextareaAutosize>
+        }}>{gctx.text}</TextareaAutosize>
     </div>
 }

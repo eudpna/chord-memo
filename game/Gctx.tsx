@@ -13,6 +13,7 @@ export class Gctx {
     score: Score[]
     instrument: 'guitar' | 'ukulele' = 'ukulele'
     chordDetail: null | ScoreElementChord = null
+    playingChords: string[] = []
 
     makeScore() {
         const lines = this.text.trim().split('\n').map(line => {
@@ -21,14 +22,19 @@ export class Gctx {
         this.score = lines
     }
 
+    setText(text: string) {
+        this.text = text
+        this.makeScore()
+        this.rerenderUI()
+    }
+
     constructor(public rerenderUI: Function) {
-        this.text = `[Dm]イントロ[A#]や 間奏、[Gm]アウトロは[A7]上のように
-[Dm]歌詞への[A#]コード入力は[Gm]コードチェンジしたい[A7]文字の前に`
-    this.rerenderUI()
+        this.setText(`[Dm]イントロ[A#]や 間奏、[Gm]アウトロは[A7]上のように
+[Dm]歌詞への[A#]コード入力は[Gm]コードチェンジしたい[A7]文字の前に`)
     }
 
     playSounds(keyIds: number[]) {
-        playSounds(this.soundType, keyIds)
+        return playSounds(this.soundType, keyIds)
     }
     
     

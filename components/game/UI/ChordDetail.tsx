@@ -9,6 +9,7 @@ import ChordImg from '@tombatossals/react-chords/lib/Chord'
 import { ChordEl } from './ChordEl'
 import { keyidToPitch } from '../../../game/lib/sound/keyIdToPitch'
 import { ChordImage } from './ChordImage'
+import { removeItemOnce } from '../../../game/lib/array'
 
 
 
@@ -50,6 +51,8 @@ export const ChordDetail: React.FC<{
             </div>
             <div className="">
                 {chord.positions.map((position, i) =>{
+                    const playingChord = gctx.chordDetail.text + String(i)
+                    const isPlaying = gctx.playingChords.includes(playingChord)
                     const isSelected = gctx.chordDetail.variation === i
                     return <div key={i} className="flex">
                         <div className='relative inline-block' style={{
@@ -66,11 +69,21 @@ export const ChordDetail: React.FC<{
                             width: 180,
                         }}>
                             <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
-                                border: 'solid black 1px'
+                                border: 'solid black 1px',
+                                background: isPlaying ? '#bbb' : 'white'
                             }} onClick={() => {
+                                
+                                props.gctx.playingChords.push(playingChord)
+                                gctx.rerenderUI()
                                 props.gctx.playSounds(position.midi)
+                                .then(() => {
+                                    setTimeout(() => {
+                                        removeItemOnce(props.gctx.playingChords, playingChord)
+                                        gctx.rerenderUI()
+                                    }, 3000);
+                                })
                             }}>
-                                音を再生
+                                {isPlaying ? '再生中…' : '音を再生' }
                             </button>
                             <div className='text-sm'>
                                 構成音: {position.midi.map(num => {
