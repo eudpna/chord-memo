@@ -3,7 +3,6 @@ import { useRef, useState, useEffect } from "react"
 import { Gctx } from "../../../game/Gctx"
 import { ChordData, chordToName } from "../../../game/lib/chords"
 import { guitarInstrument } from "../../../game/lib/instruments"
-import { sound } from "../../../game/lib/sound/sound"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
 
 export const ChordEl: React.FC<{
@@ -35,9 +34,13 @@ export const ChordEl: React.FC<{
         marginRight: -10,
         marginLeft: -10,
         width: 60,
-        left: 10,
+        left: 20,
         bottom: 10,
         // backgroundColor: state.sounds.length !== 0 ? '#ddd' : 'transparent'
+    }}
+    onClick={() => {
+        gctx.chordDetail = props.chord
+        gctx.rerenderUI()
     }}
     >
         <div className="text-center text-sm font-bold" style={{

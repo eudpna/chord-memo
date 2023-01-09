@@ -228,3 +228,6 @@ export const chordToName = (chord: ChordData): string => {
 }
 
 
+
+
+export type ChordType = typeof guitarChordsData[number]

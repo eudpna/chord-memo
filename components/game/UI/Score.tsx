@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
 import { ChordData, chordToName, guitarChords } from "../../../game/lib/chords"
-import { sound } from "../../../game/lib/sound/sound"
 import { guitarInstrument } from "../../../game/lib/instruments"
 import { Howl } from "howler"
 import { Gctx, SoundType } from "../../../game/Gctx"
@@ -21,7 +20,7 @@ export const Score: React.FC<{
     }}>
         {/* {gctx.score.map((line)} */}
     {gctx.score.map((line, i) => <div key={i} style={{
-        minHeight: 80,
+        minHeight: 90,
         marginBottom: 10,
     }}>
         {line.map((scoreElement, index) => {

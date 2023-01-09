@@ -1,5 +1,5 @@
 import { Howl } from 'howler'
-import { SoundType } from '../../components/SoundSelect';
+import { SoundType } from '../../Gctx';
 import { keyidToPitch } from "./keyIdToPitch";
 import { SolfaToFlat } from "./solfa";
 
@@ -17,7 +17,7 @@ export function loadSounds(soundType: SoundType, keyIDs: number[]) {
     })
 }
 
-export function sound(soundType: SoundType, keyIDs: number[]) {
+export function playSounds(soundType: SoundType, keyIDs: number[]) {
     const promises = keyIDs.map(keyID => {
         return new Promise<Howl>((resolve) => {
             const pitch = keyidToPitch(keyID)
