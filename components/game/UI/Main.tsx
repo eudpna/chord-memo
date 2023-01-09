@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Gctx } from "../../../game/Gctx"
-import { Result } from "./Result"
+import { Score } from "./Score"
+
 import { TextField } from "./TextField"
 
 
@@ -20,7 +21,7 @@ export const Main: React.FC<{
             <TextField gctx={gctx} />
         </div>
         <div>
-            <Result gctx={gctx} />
+            <Score gctx={gctx} />
         </div>
         <div className="text-sm pt-4">
             コードを長押しすると音が出ます（数字1~9キーを押しても可）

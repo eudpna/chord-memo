@@ -31,14 +31,17 @@ export const ChordEl: React.FC<{
 
   
 
-    return <div className="w-24 inline-block rounded cursor-pointer" style={{
+    return <div className=" inline-block rounded cursor-pointer absolute" style={{
         marginRight: -10,
         marginLeft: -10,
+        width: 60,
+        left: 10,
+        bottom: 10,
         // backgroundColor: state.sounds.length !== 0 ? '#ddd' : 'transparent'
     }}
     >
-        <div className="text-center text-lg font-bold" style={{
-            marginBottom: -12,
+        <div className="text-center text-sm font-bold" style={{
+            marginBottom: -8,
 
         }}>
             {chordToName(props.chord)}
