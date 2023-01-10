@@ -6,7 +6,7 @@ export const Setting: React.FC<{
 }> = (props) => {
     const gctx = props.gctx
 
-    return <div className=" p-0 pt-6">
+    return <div className="text-sm p-0 pt-6">
         楽器変更：
         <select value={gctx.instrument} className="rounded border-gray-400 px-2" style={{
             border: 'solid 1px rgb(156,163,175)'

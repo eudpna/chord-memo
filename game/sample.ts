@@ -18,6 +18,7 @@ export const sampleScores = [
 君と[F]失くした[C]想い出乗[D7]せて行くよ[G]
 ララララ[C]口ずさむ[G]くちびるを[Am]染めて行く[Em]
 君と[F]見つけた[C]しあわせ花[F]のよう[G7]に[C]`,
+    instrument: 'ukulele'
     },
     {
         title: 'Take Me Home, Country Roads',

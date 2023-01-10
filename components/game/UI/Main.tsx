@@ -31,12 +31,12 @@ export const Main: React.FC<{
         <div>
             {/* <div className="text-sm">コードネームを半角スペース区切りで入力してください</div> */}
             <TextField gctx={gctx} />
-            <div style={{
+            <div className="text-right" style={{
                 marginTop: -8
             }}>
-                <button className="text-xs text-blue-700" onClick={() => {
+                <button className="text-xs text-blue-600" onClick={() => {
                     gctx.downloadText()
-                }}>テキストファイルとしてダウンロード</button>
+                }}>入力をテキストファイルとしてダウンロード</button>
             </div>
         </div>
         <div>
@@ -50,7 +50,7 @@ export const Main: React.FC<{
             zIndex: 10
         }}>
             <ChordDetail gctx={gctx} />
-            <div className="text-sm">
+            <div className="text-xs">
                 コード画像をクリックすると詳細を表示します。
             </div>
         </div>
@@ -96,7 +96,7 @@ export const Main: React.FC<{
             サンプル譜：
             {sampleScores.map(sample => {
                 return <span key={sample.title}>
-                    /<A href={location.href.replace(location.search, '') + `?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>
+                    /<A href={location.href.replace(location.search, '') + `?text=${encodeURIComponent(sample.text)}`+(sample.instrument==='ukulele' ? '&instrument=ukulele' : '')}> {sample.title} </A>
                     {/* <A key={sample.title} href={`https://${location.hostname}/?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>/ */}
                 </span>
             })}

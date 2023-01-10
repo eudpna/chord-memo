@@ -15,7 +15,8 @@ export const Score: React.FC<{
 
     return <div className="noselect" style={{
         marginLeft: 5,
-        marginRight: -5,
+        marginRight: 5,
+        // marginRight: -5,
         marginTop: 70,
     }}>
         {/* {gctx.score.map((line)} */}
@@ -30,7 +31,8 @@ export const Score: React.FC<{
                     // top: 20,
                     // lineHeight: 3,
                     // height: 45,
-                    lineHeight: '80px'
+                    lineHeight: '80px',
+                    // overflow: 'hidden'
                 }}>
                     {scoreElement.text}
                 </div>                
@@ -39,6 +41,7 @@ export const Score: React.FC<{
                 height: 45,
                 width: 40,
                 marginLeft: (index !== 0 && line[index-1].type === 'chord') ? 10 : -10,
+                // overflow: 'visible'
                 //  lineHeight: '80px'
                 
             }}>

@@ -8,7 +8,8 @@ const Index: React.FC<{}> = () => {
    
     return <>
         <Head>
-            <link rel="icon" href="/favicon.png" />
+            {/* <link rel="icon" href="/favicon.png" /> */}
+            {/* <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0"></meta> */}
             <title>こーどのーと</title>
         </Head>
         <div lang="ja" className="w-full h-full">
