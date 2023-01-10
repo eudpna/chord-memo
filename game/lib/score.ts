@@ -41,7 +41,6 @@ export function textToScore(text: string, line: number): Score {
         const vm = chord.match(/\((.*?)\)/)
         let variation = 0
         if (vm) {
-            console.log(vm[0])
             variation = Number(vm[1])
             chord = removeParenthes(chord)
         }

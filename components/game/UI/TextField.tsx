@@ -14,7 +14,6 @@ export const TextField: React.FC<{
             lineHeight: 1.5
         }} minRows={3} onChange={(e) => {
             gctx.text = (e.target.value)
-            console.log('chage')
             gctx.rerenderUI()
             gctx.makeScore()
         }}></TextareaAutosize>

@@ -17,10 +17,9 @@ export const ChordEl: React.FC<{
 
     const isDetailOpened = gctx.chordDetail === props.scoreElementChord
 
-    // console.log(props.scoreElementChord.variation)
+    
     if (typeof props.scoreElementChord.variation === 'number' && props.scoreElementChord.variation % 1 === 0 && 0 < props.scoreElementChord.variation && props.scoreElementChord.variation < chord.positions.length) {
         variation = props.scoreElementChord.variation
-        console.log('nyaaaa')
     }
 
     if (!chord) return <div className="font-bold inline-block rounded   absolute text-sm" style={{

@@ -22,11 +22,20 @@ export class Gctx {
             return textToScore(line.trim(), i)
         })
         this.score = lines
-        console.log(lines)
     }
 
     downloadText() {
         downloadText('コード譜.txt', this.text)
+    }
+
+    copyURLToClipBoard() {
+        if (navigator && navigator.clipboard) {
+            navigator.clipboard.writeText(this.getShareURL())
+        }
+    }
+
+    getShareURL() {
+        return location.href.replace(location.search, '') + `?text=${encodeURIComponent(this.text)}` + (this.instrument === 'ukulele' ? '&instrument=ukulele' : '')
     }
 
     setText(text: string) {
@@ -37,12 +46,10 @@ export class Gctx {
 
     constructor(public rerenderUI: Function) {
         const text = getUrlParameter('text', location.href)
-        console.log('text is', text, typeof text)
         if (text && typeof text === 'string') {
             this.setText(text)
         }
         const instrument = getUrlParameter('instrument', location.href)
-        console.log('instrument is', instrument)
         if (instrument && typeof instrument === 'string') {
             if (instrument === 'ukulele' || this.instrument === 'guitar') {
                 this.instrument = instrument as this['instrument']

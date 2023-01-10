@@ -108,7 +108,7 @@ export const ChordDetail: React.FC<{
                         <div className='inline-block' style={{
                             // width: 'full',
                             marginTop: 10,
-                            width: 180,
+                            width: 210,
                         }}>
                             <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
                                 border: 'solid 1px rgb(156,163,175)',
@@ -128,11 +128,11 @@ export const ChordDetail: React.FC<{
                             }}>
                                 {isPlaying ? '再生中…' : '音を再生' }
                             </button>
-                            <div className='text-sm'>
+                            <div className='text-xs'>
                                 構成音: {position.midi.map(num => {
                                     const pitch = keyidToPitch(num)
                                     // return String(pitch.octave) + pitch.solfa + ' '
-                                    return pitch.solfa + ' '
+                                    return <span><span className='text-xs'>{String(pitch.octave)}</span><span className='font-bold'>{pitch.solfa}</span> </span>
                                 })}
                             </div>
                         </div>
@@ -161,15 +161,11 @@ export const ChordDetail: React.FC<{
                                     newStr = newStr.replace('(0)', '')
                                 }
                                 const newLine = strSplice(line, p.start, p.end-p.start, newStr)
-                                // console.log(gctx.chordDetail.text)
-                                // console.log(newLine)
-                                // console.log(`[${gctx.chordDetail.text}(${i})]`)
+                             
                                 const tmp = gctx.text.split('\n')
                                 gctx.text = [...(tmp.slice(0, p.line)),
                                 (newLine), ...(tmp.slice(p.line+1))].join(`\n`)
 
-                                console.log(gctx.text)
-                                // gctx.text = newLine + '\n' + gctx.text.split('\n').slice(1).join('\n')
                                 gctx.makeScore()
                                 const thisChord = gctx.score[p.line].filter(e => {
                                     return e.type === 'chord' && e.pointer.start === p.start

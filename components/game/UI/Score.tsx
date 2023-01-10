@@ -36,9 +36,10 @@ export const Score: React.FC<{
                 </div>                
             }
              return <span key={index} className="inline-block relative" style={{
-                height: 0,
+                height: 45,
                 width: 40,
                 marginLeft: (index !== 0 && line[index-1].type === 'chord') ? 10 : -10,
+                //  lineHeight: '80px'
                 
             }}>
                 <ChordEl gctx={props.gctx} scoreElementChord={scoreElement} />
