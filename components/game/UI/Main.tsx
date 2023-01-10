@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Gctx } from "../../../game/Gctx"
+import { sampleScores } from "../../../game/sample"
+import { A } from "../../A"
 import { ChordDetail } from "./ChordDetail"
 import { Score } from "./Score"
 import { Setting } from "./Setting"
@@ -42,8 +44,26 @@ export const Main: React.FC<{
         <div>
             <ChordDetail gctx={gctx} />
         </div>
+        <div className="text-sm mt-8">
+            このコード譜の共有用URL:
+            <div className="bg-gray-200 p-0.5 text-xs" style={{
+                overflowWrap: 'break-word',
+                wordBreak: 'break-all',
+            }}>
+                {location.href.replace(location.search, '') + `?text=${encodeURIComponent(gctx.text)}` + (gctx.instrument === 'ukulele' ? '&instrument=ukulele' : '')}
+            </div>
+        </div>
         <div>
             <Setting gctx={gctx}/>
+        </div>
+        <div className="pt-2">
+            コード譜の作例：
+            {sampleScores.map(sample => {
+                return <span key={sample.title}>
+                    /<A  href={location.href.replace(location.search, '') + `?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>
+                    {/* <A key={sample.title} href={`https://${location.hostname}/?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>/ */}
+                </span>
+            })}
         </div>
     </div>
 }

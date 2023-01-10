@@ -46,7 +46,8 @@ export const ChordDetail: React.FC<{
         className='p-1 relative'
             // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
-                border: 'solid 1px black'
+                border: 'solid 1px rgb(156,163,175)',
+                // border: 'solid 1px black'
             }}
         >
             <div className="prevent-shot" style={{
@@ -95,7 +96,8 @@ export const ChordDetail: React.FC<{
                             width: 180,
                         }}>
                             <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
-                                border: 'solid black 1px',
+                                border: 'solid 1px rgb(156,163,175)',
+                                // border: 'solid black 1px',
                                 background: isPlaying ? '#bbb' : 'white'
                             }} onClick={() => {
                                 
@@ -133,7 +135,8 @@ export const ChordDetail: React.FC<{
                             : 
                             <button className='rounded  py-1 mt-3' style={{
                                 width: 80,
-                                border: 'solid 1px black',
+                                    border: 'solid 1px rgb(156,163,175)',
+                                // border: 'solid 1px black',
                             }}
                             onClick={() => {
                                 const p = gctx.chordDetail.pointer

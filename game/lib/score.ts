@@ -46,10 +46,12 @@ export function textToScore(text: string, line: number): Score {
             chord = removeParenthes(chord)
         }
 
-        result.push({
-            type: 'lyric',
-            text: lyric,
-        })
+        if (lyric.trim() !== '') {
+            result.push({
+                type: 'lyric',
+                text: lyric,
+            })
+        }
         result.push({
             type: 'chord',
             text: chord,

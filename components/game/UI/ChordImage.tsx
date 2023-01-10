@@ -32,7 +32,7 @@ export const ChordImage: React.FC<{
             // text.style.zIndex = '1'
             text.style.stroke = '#777'
             if (text.getAttribute('font-size') === '0.25rem') {
-               text.setAttribute('font-size', '1rem')
+               text.setAttribute('font-size', '0.9rem')
                 
                 
                 // text.setAttribute('transform', "translateX('-1rem')")

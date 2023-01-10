@@ -14,7 +14,7 @@ export const Score: React.FC<{
     if (!gctx.score) return null
 
     return <div className="noselect" style={{
-        marginLeft: -5,
+        marginLeft: 5,
         marginRight: -5,
         marginTop: 70,
     }}>
@@ -35,11 +35,10 @@ export const Score: React.FC<{
                     {scoreElement.text}
                 </div>                
             }
-
-            return <span key={index} className="inline-block relative" style={{
+             return <span key={index} className="inline-block relative" style={{
                 height: 0,
                 width: 40,
-                marginLeft: 10,
+                marginLeft: (index !== 0 && line[index-1].type === 'chord') ? 10 : -10,
                 
             }}>
                 <ChordEl gctx={props.gctx} scoreElementChord={scoreElement} />

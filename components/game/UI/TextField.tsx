@@ -10,9 +10,9 @@ export const TextField: React.FC<{
         <TextareaAutosize 
             value={gctx.text}
         placeholder="歌詞とコードを入力"
-            className="p-1 resize-none w-full border border-gray-500 rounded" style={{
-            lineHeight: 1.2
-        }} minRows={2} onChange={(e) => {
+            className="p-1 resize-none w-full border border-gray-400 rounded" style={{
+            lineHeight: 1.5
+        }} minRows={3} onChange={(e) => {
             gctx.text = (e.target.value)
             console.log('chage')
             gctx.rerenderUI()

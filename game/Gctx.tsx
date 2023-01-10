@@ -1,7 +1,8 @@
 import { ChordData } from "./lib/chords"
-import { downloadText } from "./lib/lib"
+import { downloadText, getUrlParameter } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
+
 
 export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano' 
 
@@ -34,8 +35,19 @@ export class Gctx {
     }
 
     constructor(public rerenderUI: Function) {
-        this.setText(`[Dm]イントロ[A#]や 間奏、[Gm]アウトロは[A7]上のように
-[Dm]歌詞への[A#]コード入力は[Gm]コードチェンジしたい[A7]文字の前に`)
+        const text = getUrlParameter('text', location.href)
+        console.log('text is', text, typeof text)
+        if (text && typeof text === 'string') {
+            this.setText(text)
+        }
+        const instrument = getUrlParameter('instrument', location.href)
+        console.log('instrument is', instrument)
+        if (instrument && typeof instrument === 'string') {
+            if (instrument === 'ukulele' || this.instrument === 'guitar') {
+                this.instrument = instrument as this['instrument']
+                this.rerenderUI()
+            }            
+        }
     }
 
     playSounds(keyIds: number[]) {
