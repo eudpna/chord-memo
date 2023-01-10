@@ -15,12 +15,39 @@ export const ChordImage: React.FC<{
 
     const ref = useRef<HTMLDivElement>(null)
 
-    // 線を太くして見やすく（改造）
-    useEffect(() => {
+    function kaizou() {
+        
+        // 線を太くして見やすく（改造）
         const root = ref.current
+        if (!root) return
         const path = root.firstChild.firstChild.firstChild.firstChild as SVGPathElement
         path.setAttribute('stroke-width', '0.75')
-    }, []);
+
+        // 文字を大きくして見やすく（改造）
+        root.style.overflow = 'visible'
+        const texts = root.getElementsByTagName('text')
+        Array.from(texts).map(text => {
+            if (text.getAttribute('font-size') === '0.25rem') {
+                text.setAttribute('font-size', '1rem')
+                // text.setAttribute('transform', "translateX('-1rem')")
+                // text.setAttribute('x', "-20")
+                // text.style.marginLeft = '-20px'
+                // text.style.left = '-20px'
+                // text.style.overflow = 'visible'
+                // text.parentElement.style.overflow = 'visible'
+                // text.parentElement.style.width = '100px'
+                // text.parentElement.style.height = '100px'
+                // text.setAttribute('overflow', "visible")
+            }
+        })
+    }
+
+    
+    useEffect(() => {
+        kaizou()
+    });
+
+    // kaizou()
 
     return <div>
         {props.noName ? null :
@@ -31,7 +58,7 @@ export const ChordImage: React.FC<{
             {chordToName(props.chord)}
         </div>}
         <div ref={ref} className="w-full" style={{
-            transform: 'rotate(-90deg)'
+            transform: 'rotate(-90deg)',
         }} >
             <ChordImg chord={props.chord.positions[props.variation]}
                 instrument={guitarInstrument}
