@@ -9,10 +9,11 @@ const Index: React.FC<{}> = () => {
     return <>
         <Head>
             <link rel="icon" href="/favicon.png" />
-            <title>コード譜作成</title>
+            <title>こーどのーと</title>
         </Head>
         <div lang="ja" className="w-full h-full">
             <GameEl />
+
         </div>
     </>
 }

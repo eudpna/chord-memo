@@ -18,9 +18,16 @@ export const Main: React.FC<{
 
 
     return <div className="pt-4 px-2 pb-3 max-w-3xl mx-auto">
-        <div className="text-lg mb-3">
-            コード譜作成
+        <div className="mb-6">
+            <div className="text-xl font-bold text-gray-700 inline-block">
+                こーどのーと
+            </div>
+            <div className="text-sm inline-block pl-2" style={{
+            }}>
+                コード譜作成ツール
+            </div>
         </div>
+        
         <div>
             {/* <div className="text-sm">コードネームを半角スペース区切りで入力してください</div> */}
             <TextField gctx={gctx} />
