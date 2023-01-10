@@ -33,7 +33,7 @@ const Index: React.FC<{}> = () => {
    
     return <>
         <Head>            
-            <title>対応コード一覧 | こーどのーと</title>
+            <title>利用可能なコードの一覧 | こーどのーと</title>
             {/* <meta name="viewport" content=""></meta> */}
         </Head>
         <div lang="ja" className="w-full h-full">
@@ -44,11 +44,16 @@ const Index: React.FC<{}> = () => {
                 }}>
                     <A inSite href="/">戻る</A>
                 </div>
-                <div className='text-2xl pt-6' style={{
+                <div className='text-2xl pt-6 mb-3' style={{
                     marginLeft: -5,
 
                 }}>
-                    対応コード記号一覧
+                    利用可能なコード記号の一覧
+                </div>
+                <div style={{
+                    marginLeft: -5,
+                }}>
+                    この一覧にないコードは画像が表示されません。
                 </div>
 
 

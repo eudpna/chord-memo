@@ -103,7 +103,7 @@ export const Main: React.FC<{
         </div>
         <div className="text-xs mt-6">
             <div className="mb-4">
-                <A href="/list">対応しているコード記号の一覧</A>
+                <A href="/list">利用可能なコード記号の一覧</A>
             </div>
             <div>
                 不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。2023/01/10
