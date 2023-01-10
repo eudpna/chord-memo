@@ -89,7 +89,7 @@ export const ChordDetail: React.FC<{
                 <span className='text-xl font-bold'>
                     {chord2displayName(chord)}
                 </span>
-                の詳細
+                のバリエーション
             </div>
             <div className="mx-auto " style={{
                 width: 250
@@ -100,9 +100,10 @@ export const ChordDetail: React.FC<{
                     const isSelected = gctx.chordDetail.variation === i
                     return <div key={i} className="flex">
                         <div className='relative inline-block' style={{
-                            height: 70,
-                            width: 60,
+                            height: 80,
+                            width: 80,
                             marginRight: 8,
+                            marginLeft: -8,
 
                         }}>
                             <ChordImage gctx={props.gctx} chord={chord} variation={i} noName />

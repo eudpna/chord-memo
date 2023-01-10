@@ -17,12 +17,9 @@ export const Main: React.FC<{
     const gctx = props.gctx
 
 
-    return <div className="pt-4 px-2 pb-16 max-w-3xl mx-auto">
-        <div className="text-2xl">
+    return <div className="pt-4 px-2 pb-3 max-w-3xl mx-auto">
+        <div className="text-lg mb-3">
             コード譜作成
-        </div>
-        <div className="mb-8">
-            {/* <SoundSelect gctx={gctx} /> */}
         </div>
         <div>
             {/* <div className="text-sm">コードネームを半角スペース区切りで入力してください</div> */}
@@ -54,7 +51,7 @@ export const Main: React.FC<{
             <Setting gctx={gctx} />
         </div>
         <div className="text-sm mt-8">
-            このコード譜の共有用URL:
+            このコード譜の保存・共有用URL
             <div className="relative">
                 <div className="bg-gray-200 p-0.5 text-xs relative" style={{
                     overflowWrap: 'break-word',
@@ -89,7 +86,7 @@ export const Main: React.FC<{
             </div>
         </div>
         <div className="mt-8 text-sm">
-            コード譜の作例：
+            サンプル譜：
             {sampleScores.map(sample => {
                 return <span key={sample.title}>
                     /<A href={location.href.replace(location.search, '') + `?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>
@@ -99,14 +96,14 @@ export const Main: React.FC<{
         </div>
         <div className="text-xs mt-6">
             <div className="mb-4">
-                <A inSite href="/list">対応しているコードの一覧</A>
+                <A inSite href="/list">対応しているコード記号の一覧</A>
             </div>
             <div>
-                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。
+                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。2023/01/10
             </div>
-            <div>
+            {/* <div>
                 このページの最終更新日は 2023/01/10
-            </div>
+            </div> */}
         </div>
     </div>
 }
