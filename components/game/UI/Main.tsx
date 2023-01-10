@@ -42,7 +42,9 @@ export const Main: React.FC<{
         {/* <div className="text-sm pt-4">
             コードを長押しすると音が出ます（数字1~9キーを押しても可）
         </div> */}
-        <div>
+        <div className="relative" style={{
+            zIndex: 10
+        }}>
             <ChordDetail gctx={gctx} />
             <div className="text-sm">
                 コード画像をクリックすると詳細を表示します。
@@ -68,6 +70,15 @@ export const Main: React.FC<{
                 }} onClick={() => {
                     gctx.copyURLToClipBoard()
                 }}>
+                    {gctx.copiedMessage ? 
+                        <div className="text-gray-500 font-bold text-sm" style={{
+                            marginTop: -20,
+                            width: 0,
+                            marginLeft: -20,
+                            
+                        }}>Copied!</div>
+                    : null}
+                    
                     <div className="relative pt-0.5 pl-0.5" style={{
                         width: 27,
                         height: 30,

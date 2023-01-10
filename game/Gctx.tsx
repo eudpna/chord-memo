@@ -1,5 +1,5 @@
 import { ChordData } from "./lib/chords"
-import { downloadText, getUrlParameter } from "./lib/lib"
+import { copyToClipboard, downloadText, getUrlParameter } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
@@ -16,6 +16,7 @@ export class Gctx {
     instrument: 'guitar' | 'ukulele' = 'guitar'
     chordDetail: null | ScoreElementChord = null
     playingChords: string[] = []
+    copiedMessage: number = 0
 
     makeScore() {
         const lines = this.text.trim().split('\n').map((line, i) => {
@@ -29,9 +30,25 @@ export class Gctx {
     }
 
     copyURLToClipBoard() {
-        if (navigator && navigator.clipboard) {
-            navigator.clipboard.writeText(this.getShareURL())
-        }
+        copyToClipboard(this.getShareURL())
+        .then(() => {
+            this.copiedMessage++
+            this.rerenderUI()
+            setTimeout(() => {
+                this.copiedMessage--
+                this.rerenderUI()
+            }, 2000);
+        })
+        // if (navigator && navigator.clipboard) {
+        //     navigator.clipboard.writeText(this.getShareURL())
+        //     this.copiedMessage++
+        //     this.rerenderUI()
+        //     setTimeout(() => {
+        //         this.copiedMessage--
+        //         this.rerenderUI()
+        //     }, 2000);
+        // }
+        
     }
 
     getShareURL() {

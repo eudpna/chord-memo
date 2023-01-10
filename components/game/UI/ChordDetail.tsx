@@ -55,12 +55,13 @@ export const ChordDetail: React.FC<{
             <div className='flex'>
                 <div className='flex-1'></div>
         <div 
-        className='prevent-shot p-4 pb-8 px-6 bg-white rounded relative'
+        className='prevent-shot pt-3 pb-8 px-2 bg-white rounded relative'
             // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
                 // border: 'solid 1px rgb(156,163,175)',
-                margin: 20,
-                width: 420,
+                margin: 10,
+                marginTop: 20,
+                width: 380,
                 height: 'auto'
                 // border: 'solid 1px black'
             }}
@@ -84,13 +85,15 @@ export const ChordDetail: React.FC<{
                 <CloseIcon />
             </div>
             
-            <div className='p-1  mx-2'>
+            <div className='p-1  mx-2 pb-3'>
                 <span className='text-xl font-bold'>
                     {chord2displayName(chord)}
                 </span>
                 の詳細
             </div>
-            <div className="">
+            <div className="mx-auto " style={{
+                width: 250
+            }}>
                 {chord.positions.map((position, i) =>{
                     const playingChord = gctx.chordDetail.text + String(i)
                     const isPlaying = gctx.playingChords.includes(playingChord)
@@ -108,7 +111,7 @@ export const ChordDetail: React.FC<{
                         <div className='inline-block' style={{
                             // width: 'full',
                             marginTop: 10,
-                            width: 210,
+                            width: 120,
                         }}>
                             <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
                                 border: 'solid 1px rgb(156,163,175)',
@@ -128,17 +131,17 @@ export const ChordDetail: React.FC<{
                             }}>
                                 {isPlaying ? '再生中…' : '音を再生' }
                             </button>
-                            <div className='text-xs'>
+                            {/* <div className='text-xs'>
                                 構成音: {position.midi.map(num => {
                                     const pitch = keyidToPitch(num)
                                     // return String(pitch.octave) + pitch.solfa + ' '
                                     return <span><span className='text-xs'>{String(pitch.octave)}</span><span className='font-bold'>{pitch.solfa}</span> </span>
                                 })}
-                            </div>
+                            </div> */}
                         </div>
                         <div>
                             {isSelected ? 
-                                <button className='rounded  py-1 mt-3' style={{
+                                <button className='rounded  py-1 mt-2' style={{
                                     width: 80,
                                     borderStyle: 'solid',
                                     borderWidth: '1px',
@@ -148,7 +151,7 @@ export const ChordDetail: React.FC<{
                                     選択中
                                 </button>
                             : 
-                            <button className='rounded  py-1 mt-3' style={{
+                            <button className='rounded  py-1 mt-2' style={{
                                 width: 80,
                                     border: 'solid 1px rgb(156,163,175)',
                                 // border: 'solid 1px black',
