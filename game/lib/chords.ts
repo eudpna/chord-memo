@@ -35,8 +35,8 @@ const key2flat = key => key
     .replace('G#', 'Ab')
     .replace('A#', 'Bb')
 
-const guitarChordsData = Object.values(guitar.chords).flatMap(a => a)
-const ukuleleChordsData = Object.values(ukulele.chords).flatMap(a => a)
+export const guitarChordsData = Object.values(guitar.chords).flatMap(a => a)
+export const ukuleleChordsData = Object.values(ukulele.chords).flatMap(a => a)
 
 export type ChordData = typeof guitarChordsData[number]
 

@@ -97,7 +97,10 @@ export const Main: React.FC<{
                 </span>
             })}
         </div>
-        <div className="text-xs mt-12">
+        <div className="text-xs mt-6">
+            <div className="mb-4">
+                <A inSite href="/list">対応しているコードの一覧</A>
+            </div>
             <div>
                 不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。
             </div>
