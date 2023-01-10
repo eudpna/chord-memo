@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import React, { useEffect } from 'react'
 import { GameEl } from '../components/game/GameEl'
-import { chordToName, guitarChordsData, ukuleleChordsData } from '../game/lib/chords'
+import { chordToName, guitarChords, guitarChordsData, ukuleleChords, ukuleleChordsData } from '../game/lib/chords'
 import guitar from '@tombatossals/chords-db/lib/guitar.json'
 import ukulele from '@tombatossals/chords-db/lib/ukulele.json'
 import { A } from '../components/A'
@@ -10,18 +10,15 @@ import { solfaArr } from '../game/lib/sound/solfa'
 
 
 
-function list(instrument: typeof guitar | typeof ukulele) {
-    const keys = Object.keys(instrument.chords)
-    keys.sort((a, b) => {
-        return solfaArr.indexOf(a.replace('sharp', '#')) - solfaArr.indexOf(b.replace('sharp', '#'))
-    })
-    return keys.map(key => {
+function list(instrumentChords: typeof guitarChords | typeof ukuleleChords) {
+    return solfaArr.map(key => {
+        const chords =  instrumentChords.getChordsByKey(key)
         return <div>
             <div className='text-lg font-bold mt-6'>
                 {key.replace('sharp', '#')}
             </div>
             <div className='text-sm'>
-                {instrument.chords[key].map(c => {
+                {chords.map(c => {
                     return <span key={chordToName(c)}>
                         {chordToName(c)}　
                     </span>
@@ -31,9 +28,6 @@ function list(instrument: typeof guitar | typeof ukulele) {
     })
 }
 
-
-
-const url = 'https://santa.nyaw.net'
 
 const Index: React.FC<{}> = () => {
    
@@ -54,7 +48,7 @@ const Index: React.FC<{}> = () => {
                     marginLeft: -5,
 
                 }}>
-                    対応しているコード一覧
+                    対応コード記号一覧
                 </div>
 
 
@@ -67,12 +61,7 @@ const Index: React.FC<{}> = () => {
                         ギター
                     </div>
                 <div>
-                    {list(guitar)}
-                    {/* {guitarChordsData.map(c => {
-                        return <span key={chordToName(c)}>
-                            {chordToName(c)}　
-                        </span>
-                    })} */}
+                        {list(guitarChords)}
                 </div>
                 
             </div>
@@ -84,12 +73,7 @@ const Index: React.FC<{}> = () => {
                 ウクレレ
             </div>
             <div>
-                {list(ukulele)}
-                {/* {ukuleleChordsData.map(c => {
-                    return <span key={chordToName(c)}>
-                        {chordToName(c)}
-                    </span>
-                })} */}
+                    {list(ukuleleChords)}
             </div>
             </div>
         </div>
