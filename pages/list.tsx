@@ -2,9 +2,7 @@
 import Head from 'next/head'
 import React, { useEffect } from 'react'
 import { GameEl } from '../components/game/GameEl'
-import { GameElAvoidSSR } from '../components/game/GameElAvoidSSR'
 import { chordToName, guitarChordsData, ukuleleChordsData } from '../game/lib/chords'
-
 import guitar from '@tombatossals/chords-db/lib/guitar.json'
 import ukulele from '@tombatossals/chords-db/lib/ukulele.json'
 import { A } from '../components/A'

@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import React, { useEffect } from 'react'
 import { GameEl } from '../components/game/GameEl'
-import { GameElAvoidSSR } from '../components/game/GameElAvoidSSR'
+
 
 const Index: React.FC<{}> = () => {
    
@@ -12,7 +12,7 @@ const Index: React.FC<{}> = () => {
             <title>コード譜作成</title>
         </Head>
         <div lang="ja" className="w-full h-full">
-            <GameElAvoidSSR />
+            <GameEl />
         </div>
     </>
 }
