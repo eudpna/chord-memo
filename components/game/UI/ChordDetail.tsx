@@ -3,7 +3,7 @@ import Chord from '@tombatossals/react-chords/lib/Chord'
 import instruments from '@tombatossals/chords-db/lib/instruments.json'
 import React, { useState, useEffect, useRef } from 'react'
 import { Gctx } from '../../../game/Gctx'
-import { ChordType, guitarChords } from '../../../game/lib/chords'
+import { ChordType, guitarChords, ukuleleChords } from '../../../game/lib/chords'
 // import { ChordType, name2url } from "../../../lib/chords"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
 import { ChordEl } from './ChordEl'
@@ -40,7 +40,7 @@ export const ChordDetail: React.FC<{
 
     // const c = gctx.chordDetail
     // const positions = c.positions
-    const chord = guitarChords.getChordByName(gctx.chordDetail.text)
+    const chord = ( gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(gctx.chordDetail.text)
     return (
         <div 
         className='p-1 relative'

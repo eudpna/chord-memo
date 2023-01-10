@@ -10,9 +10,9 @@ export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano'
 
 export class Gctx {
     text: string = ''
-    soundType: SoundType = 'guitar'
+    // soundType: SoundType = 'guitar'
     score: Score[]
-    instrument: 'guitar' | 'ukulele' = 'ukulele'
+    instrument: 'guitar' | 'ukulele' = 'guitar'
     chordDetail: null | ScoreElementChord = null
     playingChords: string[] = []
 
@@ -39,7 +39,7 @@ export class Gctx {
     }
 
     playSounds(keyIds: number[]) {
-        return playSounds(this.soundType, keyIds)
+        return playSounds(this.instrument, keyIds)
     }
     
     

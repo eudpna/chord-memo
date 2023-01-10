@@ -4,6 +4,7 @@ import { Gctx } from "../../../game/Gctx"
 import { ChordData, chordToName } from "../../../game/lib/chords"
 import { guitarInstrument } from "../../../game/lib/instruments"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
+import { ukuleleInstrument } from "./ChordDetail"
 
 export const ChordImage: React.FC<{
     gctx: Gctx
@@ -27,12 +28,18 @@ export const ChordImage: React.FC<{
         root.style.overflow = 'visible'
         const texts = root.getElementsByTagName('text')
         Array.from(texts).map(text => {
+            text.style.fill = '#777'
+            // text.style.zIndex = '1'
+            text.style.stroke = '#777'
             if (text.getAttribute('font-size') === '0.25rem') {
-                text.setAttribute('font-size', '1rem')
+               text.setAttribute('font-size', '1rem')
+                
+                
                 // text.setAttribute('transform', "translateX('-1rem')")
                 // text.setAttribute('x', "-20")
                 // text.style.marginLeft = '-20px'
                 // text.style.left = '-20px'
+                // text.style.textOverflow = 'visible'
                 // text.style.overflow = 'visible'
                 // text.parentElement.style.overflow = 'visible'
                 // text.parentElement.style.width = '100px'
@@ -61,7 +68,7 @@ export const ChordImage: React.FC<{
             transform: 'rotate(-90deg)',
         }} >
             <ChordImg chord={props.chord.positions[props.variation]}
-                instrument={guitarInstrument}
+                instrument={gctx.instrument === 'guitar' ?  guitarInstrument : ukuleleInstrument}
                 lite
             />
         </div>

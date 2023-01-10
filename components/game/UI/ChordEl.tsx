@@ -1,7 +1,7 @@
 import { Howl } from "howler"
 import { useRef, useState, useEffect } from "react"
 import { Gctx } from "../../../game/Gctx"
-import { ChordData, chordToName, guitarChords } from "../../../game/lib/chords"
+import { ChordData, chordToName, guitarChords, ukuleleChords } from "../../../game/lib/chords"
 import { guitarInstrument } from "../../../game/lib/instruments"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
 import { ChordImage } from "./ChordImage"
@@ -12,7 +12,7 @@ export const ChordEl: React.FC<{
     scoreElementChord: ScoreElementChord
 }> = (props) => {
     const gctx = props.gctx
-    const chord = guitarChords.getChordByName(props.scoreElementChord.text)
+    const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(props.scoreElementChord.text)
     let variation = 0
 
     const isDetailOpened = gctx.chordDetail === props.scoreElementChord

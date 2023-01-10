@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Gctx } from "../../../game/Gctx"
 import { ChordDetail } from "./ChordDetail"
 import { Score } from "./Score"
+import { Setting } from "./Setting"
 
 import { TextField } from "./TextField"
 
@@ -40,6 +41,9 @@ export const Main: React.FC<{
         </div> */}
         <div>
             <ChordDetail gctx={gctx} />
+        </div>
+        <div>
+            <Setting gctx={gctx}/>
         </div>
     </div>
 }
