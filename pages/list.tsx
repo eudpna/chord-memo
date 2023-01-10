@@ -44,14 +44,14 @@ const Index: React.FC<{}> = () => {
                 }}>
                     <A inSite href="/">戻る</A>
                 </div>
-                <div className='text-2xl pt-6 mb-3' style={{
+                <div className='text-xl pt-6 mb-3' style={{
                     marginLeft: -5,
 
                 }}>
                     利用可能なコード記号の一覧
                 </div>
-                <div style={{
-                    marginLeft: -5,
+                <div className='text-sm' style={{
+                    marginLeft: -3,
                 }}>
                     この一覧にないコードは画像が表示されません。
                 </div>
