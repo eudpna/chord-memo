@@ -42,15 +42,30 @@ export const ChordDetail: React.FC<{
     // const positions = c.positions
     const chord = ( gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(gctx.chordDetail.text)
     return (
+        <div className='p-1 fixed inset-0' style={{
+            background: 'rgba(0,0,0,0.2)'
+        }} onClick={(e)=>{
+            // 詳細ウインドウを閉じる
+            if ((e.target as HTMLElement).closest('.prevent-shot')) {
+                return
+            }
+            gctx.chordDetail = null
+            gctx.rerenderUI()
+        }}>
+            <div className='flex'>
+                <div className='flex-1'></div>
         <div 
-        className='p-1 relative'
+        className='prevent-shot p-4 pb-8 px-6 bg-white rounded relative'
             // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
-                border: 'solid 1px rgb(156,163,175)',
+                // border: 'solid 1px rgb(156,163,175)',
+                margin: 20,
+                width: 420,
+                height: 'auto'
                 // border: 'solid 1px black'
             }}
         >
-            <div className="prevent-shot" style={{
+            <div  style={{
                 position: 'absolute',
                 right: 0,
                 top: 0,
@@ -60,7 +75,7 @@ export const ChordDetail: React.FC<{
                 width: 44,
                 height: 44,
                 cursor: 'pointer',
-                background: '#ddd'
+                background: '#eee'
             }} onClick={(e) => {
                 e.stopPropagation()
                 gctx.chordDetail = null
@@ -172,6 +187,9 @@ export const ChordDetail: React.FC<{
                 }
             </div>
 
+        </div>
+                <div className='flex-1'></div>
+            </div>
         </div>
     )
 }

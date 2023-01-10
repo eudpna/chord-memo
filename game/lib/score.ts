@@ -65,10 +65,12 @@ export function textToScore(text: string, line: number): Score {
         x = m.index + m.text.length
     })
     const lyric = text.substring(x, text.length)
-    result.push({
-        type: 'lyric',
-        text: lyric,
-    })
+    if (lyric.trim() !== '') {
+        result.push({
+            type: 'lyric',
+            text: lyric,
+        })
+    }
     
 
     return result

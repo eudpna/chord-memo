@@ -22,6 +22,7 @@ export class Gctx {
             return textToScore(line.trim(), i)
         })
         this.score = lines
+        console.log(lines)
     }
 
     downloadText() {
@@ -45,9 +46,11 @@ export class Gctx {
         if (instrument && typeof instrument === 'string') {
             if (instrument === 'ukulele' || this.instrument === 'guitar') {
                 this.instrument = instrument as this['instrument']
-                this.rerenderUI()
             }            
         }
+
+        this.makeScore()
+        this.rerenderUI()
     }
 
     playSounds(keyIds: number[]) {

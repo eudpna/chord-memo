@@ -43,6 +43,9 @@ export const Main: React.FC<{
         </div> */}
         <div>
             <ChordDetail gctx={gctx} />
+            <div className="text-sm">
+                コード画像をクリックすると詳細を表示します。
+            </div>
         </div>
         <div className="text-sm mt-8">
             このコード譜の共有用URL:
