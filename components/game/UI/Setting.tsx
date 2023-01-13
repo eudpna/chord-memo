@@ -26,17 +26,24 @@ export const Setting: React.FC<{
                 <select value={gctx.notation} className="rounded border-gray-400 px-2" style={{
                     border: 'solid 1px rgb(156,163,175)'
                 }} name="" id="" onChange={(e) => {
+                    
                     gctx.notation = e.target.value as Gctx['notation']
+                    // if (gctx.notation === 'simple') {
+                    //     gctx.convertLyricToSimple()
+                    // } else {
+                    //     gctx.convertSimpleToLyric()
+                    // }
                     gctx.makeScore()
                     gctx.rerenderUI()
-                }}>
-                    <option value="lyric">歌詞付き</option>
+                }}>                    
                     <option value="simple">シンプル</option>
+                    <option value="lyric">歌詞付き</option>
                 </select>
             </div>
             <div className="text-xs">
-                歌詞付きモードでは、コード記号を角括弧で囲う。（例： [G7]）<br />
                 シンプルモードでは、コード記号をスペースで区切ってそのまま記述する。（例： Em G7 C）
+                <br />
+                歌詞付きモードでは、コード記号を角括弧で囲う。（例： [G7]）
             </div>
         </div>
     </div>

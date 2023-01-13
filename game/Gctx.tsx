@@ -25,6 +25,7 @@ export class Gctx {
             else return textToScore(line.trim(), i)
         })
         this.score = lines
+        console.log(this.score)
     }
 
     downloadText() {
@@ -89,17 +90,30 @@ export class Gctx {
         this.score.map(line => {
             line.map(scoreElement => {
                 if (scoreElement.type === 'chord') {
-
+                    let newText = `[${scoreElement.text}(${scoreElement.variation})]`
+                    if (scoreElement.variation === 0) {
+                        newText = `[${scoreElement.text}]`
+                    }
+                    this.changeTextOfChord(scoreElement, newText)
                 }
             })
         })
-        // this.score.map(scoreElement => {
+    }
 
-        // })
+    convertLyricToSimple() {
+        
+        this.score.map(line => {
+            line.map(scoreElement => {
+                if (scoreElement.type === 'chord') {
+                    let newText = scoreElement.text.replaceAll('[', ' ').replaceAll(']', ' ')
+                    this.changeTextOfChord(scoreElement, newText)
+                }
+            })
+        })
     }
 
     changeVariationOfChord(chord: ScoreElementChord, num: number) {
-        let newStr = `${chord.text}(${num})`
+        let newStr = `${chord.chordName}(${num})`
         if (this.notation === 'lyric') {
             newStr = `[${newStr}]`
         }
@@ -110,19 +124,22 @@ export class Gctx {
         this.changeTextOfChord(chord, newStr)
 
         this.makeScore()
+        
         const p = chord.pointer
         const thisChord = this.score[p.line].filter(e => {
             return e.type === 'chord' && e.pointer.start === p.start
         })[0]
-        chord = thisChord as ScoreElementChord
+        this.chordDetail = thisChord as ScoreElementChord
+        console.log(this.chordDetail)
         this.rerenderUI()
-
     }
 
     replaceLine(lineNum: number, newText: string) {
         const tmp = this.text.split('\n')
         this.text = [...(tmp.slice(0, lineNum)),
         (newText), ...(tmp.slice(lineNum + 1))].join(`\n`)
+        // this.makeScore()
+        // this.rerenderUI()
     }
 
     changeTextOfChord(chord: ScoreElementChord, newStr: string) {
@@ -130,6 +147,8 @@ export class Gctx {
         const line = this.text.split('\n')[p.line];
         const newLine = strSplice(line, p.start, p.end - p.start, newStr)
         this.replaceLine(p.line, newLine)
+        // this.makeScore()
+        // this.rerenderUI()
     }
        
 

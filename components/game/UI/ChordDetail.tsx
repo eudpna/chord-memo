@@ -41,7 +41,7 @@ export const ChordDetail: React.FC<{
 
     // const c = gctx.chordDetail
     // const positions = c.positions
-    const chord = ( gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(gctx.chordDetail.text)
+    const chord = ( gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(gctx.chordDetail.chordName)
     return (
         <div className='p-1 fixed inset-0' style={{
             background: 'rgba(0,0,0,0.2)'

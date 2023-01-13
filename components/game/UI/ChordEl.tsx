@@ -5,18 +5,21 @@ import { ChordData, chordToName, guitarChords, ukuleleChords } from "../../../ga
 import { guitarInstrument } from "../../../game/lib/instruments"
 import ChordImg from '@tombatossals/react-chords/lib/Chord'
 import { ChordImage } from "./ChordImage"
-import { ScoreElementChord } from "../../../game/lib/score"
+import {  removeBrackets, removeParenthes, ScoreElementChord } from "../../../game/lib/score"
 
 export const ChordEl: React.FC<{
     gctx: Gctx
     scoreElementChord: ScoreElementChord
 }> = (props) => {
     const gctx = props.gctx
-    const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(props.scoreElementChord.text)
+
+    const chordName = removeBrackets(removeParenthes(props.scoreElementChord.text))
+    const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(chordName)
     let variation = 0
 
     const isDetailOpened = gctx.chordDetail === props.scoreElementChord
 
+    // console.log(chordName, chord)
     
     if (typeof props.scoreElementChord.variation === 'number' && props.scoreElementChord.variation % 1 === 0 && 0 < props.scoreElementChord.variation && props.scoreElementChord.variation < chord.positions.length) {
         variation = props.scoreElementChord.variation
@@ -30,7 +33,8 @@ export const ChordEl: React.FC<{
         bottom: 10,
         // backgroundColor: state.sounds.length !== 0 ? '#ddd' : 'transparent'
     }}>
-        {props.scoreElementChord.text}
+        {/* {props.scoreElementChord.text} */}
+        {chordName}
     </div>
     return <div className=" inline-block rounded  absolute" style={{
         marginRight: -10,

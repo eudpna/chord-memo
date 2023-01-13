@@ -8,7 +8,9 @@ export type ScoreElement = ScoreElementChord | ScoreElementLyric
 export type ScoreElementChord = {
     type: 'chord'
     text: string
+    chordName: string
     variation: number
+    // textの位置
     pointer: {
         line: number
         start: number
@@ -38,15 +40,17 @@ export function textToScore(text: string, line: number): Score {
         }
     }).map(m => {
         const lyric = text.substring(x, m.index)
-        let chord = text.substring(m.index, m.index + m.text.length).replaceAll('[', '').replaceAll(']', '')
+        let chordText = text.substring(m.index, m.index + m.text.length)
 
         // variation
-        const vm = chord.match(/\((.*?)\)/)
+        const vm = chordText.match(/\((.*?)\)/)
         let variation = 0
+        let chordName = chordText
         if (vm) {
             variation = Number(vm[1])
-            chord = removeParenthes(chord)
+            chordName = removeParenthes(chordText)
         }
+        chordName = removeBrackets(chordName)
 
         if (lyric.trim() !== '') {
             result.push({
@@ -56,7 +60,8 @@ export function textToScore(text: string, line: number): Score {
         }
         result.push({
             type: 'chord',
-            text: chord,
+            text: chordText,
+            chordName: chordName,
             variation: variation,
             pointer: {
                 line: line,
@@ -88,22 +93,23 @@ export function textToScoreSimpleNotation(text: string, line: number, gctx: Gctx
     const result = []
     let x = 0
     ms.map(m => {
-        return {
-            index: m.index,
-            text: m[0]
-        }
-    }).map(m => {
-        let simple = m.text
+    //     return {
+    //         index: m.index,
+    //         text: m[0]
+    //     }
+    // }).map(m => {
+        const simple = m[0]
+        
 
         // variation
         const vm = simple.match(/\((.*?)\)/)
         let variation = 0
         if (vm) {
             variation = Number(vm[1])
-            simple = removeParenthes(simple)
+            // simple = removeParenthes(simple)
         }
 
-        const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(simple)
+        const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(removeParenthes(simple))
         // let variation = 0
         if (!chord) {
             result.push({
@@ -114,18 +120,19 @@ export function textToScoreSimpleNotation(text: string, line: number, gctx: Gctx
             result.push({
                 type: 'chord',
                 text: simple,
+                chordName: removeBrackets(removeParenthes(simple)),
                 variation: variation,
                 pointer: {
                     line: line,
                     start: m.index,
-                    end: m.index + m.text.length
+                    end: m.index + simple.length
                 }
             })
         }
-        x = m.index + m.text.length
+        x = m.index + simple.length
     })
 
-    console.log(result)
+    // console.log(result)
 
     return result
 }
@@ -139,6 +146,17 @@ export function removeParenthes(text: string) {
         return text.replace(m[0], '')
     }
     return text
+}
+export function removeBrackets(text: string) {
+    return text.replaceAll('[', '')
+        .replaceAll(']', '')
+        .replaceAll('(', '')
+        .replaceAll(')', '')
+    // const m = text.match(/\[.*?\]/)
+    // if (m) {
+    //     return text.replace(m[0], '')
+    // }
+    // return text
 }
 
 
