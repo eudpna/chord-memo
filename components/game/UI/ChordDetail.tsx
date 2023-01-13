@@ -160,7 +160,10 @@ export const ChordDetail: React.FC<{
                             onClick={() => {
                                 const p = gctx.chordDetail.pointer
                                 const line = gctx.text.split('\n')[p.line];
-                                let newStr = `[${gctx.chordDetail.text}(${i})]`
+                                let newStr = `${gctx.chordDetail.text}(${i})`
+                                if (gctx.notation === 'lyric') {
+                                    newStr = `[${newStr}]`
+                                }                                
                                 if (i===0) {
                                     newStr = newStr.replace('(0)', '')
                                 }

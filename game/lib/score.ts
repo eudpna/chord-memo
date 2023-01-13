@@ -1,3 +1,6 @@
+import { Gctx } from "../Gctx"
+import { ChordData, chordToName, guitarChords, ukuleleChords } from "../../game/lib/chords"
+
 export type ScoreElement = ScoreElementChord | ScoreElementLyric
 
 
@@ -74,6 +77,61 @@ export function textToScore(text: string, line: number): Score {
 
     return result
 }
+
+
+
+export function textToScoreSimpleNotation(text: string, line: number, gctx: Gctx): Score {
+    // const tmp = text.matchAll(/\S+?/g)
+    const tmp = text.matchAll(/\S+/g)
+
+    const ms = Array.from(tmp)
+    const result = []
+    let x = 0
+    ms.map(m => {
+        return {
+            index: m.index,
+            text: m[0]
+        }
+    }).map(m => {
+        let simple = m.text
+
+        // variation
+        const vm = simple.match(/\((.*?)\)/)
+        let variation = 0
+        if (vm) {
+            variation = Number(vm[1])
+            simple = removeParenthes(simple)
+        }
+
+        const chord = (gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(simple)
+        // let variation = 0
+        if (!chord) {
+            result.push({
+                type: 'lyric',
+                text: simple,
+            })
+        } else {
+            result.push({
+                type: 'chord',
+                text: simple,
+                variation: variation,
+                pointer: {
+                    line: line,
+                    start: m.index,
+                    end: m.index + m.text.length
+                }
+            })
+        }
+        x = m.index + m.text.length
+    })
+
+    console.log(result)
+
+    return result
+}
+
+
+
 
 export function removeParenthes(text: string) {
     const m = text.match(/\(.*?\)/)

@@ -1,6 +1,6 @@
 import { ChordData } from "./lib/chords"
 import { copyToClipboard, downloadText, getUrlParameter } from "./lib/lib"
-import { Score, ScoreElementChord, textToScore } from "./lib/score"
+import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
 
@@ -17,10 +17,12 @@ export class Gctx {
     chordDetail: null | ScoreElementChord = null
     playingChords: string[] = []
     copiedMessage: number = 0
+    notation: 'lyric' | 'simple' = 'lyric'
 
     makeScore() {
         const lines = this.text.trim().split('\n').map((line, i) => {
-            return textToScore(line.trim(), i)
+            if (this.notation === 'simple') return textToScoreSimpleNotation(line.trim(), i, this)
+            else return textToScore(line.trim(), i)
         })
         this.score = lines
     }
