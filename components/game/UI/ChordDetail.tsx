@@ -12,6 +12,7 @@ import { ChordImage } from './ChordImage'
 import { removeItemOnce } from '../../../game/lib/array'
 import { removeParenthes, ScoreElementChord } from '../../../game/lib/score'
 import { CloseIcon } from '../../icons/CloseIcon'
+import { chord2displayName, strSplice } from '../../../game/lib/lib'
 
 
 
@@ -98,6 +99,8 @@ export const ChordDetail: React.FC<{
                     const playingChord = gctx.chordDetail.text + String(i)
                     const isPlaying = gctx.playingChords.includes(playingChord)
                     const isSelected = gctx.chordDetail.variation === i
+                   
+
                     return <div key={i} className="flex">
                         <div className='relative inline-block' style={{
                             height: 80,
@@ -158,27 +161,7 @@ export const ChordDetail: React.FC<{
                                 // border: 'solid 1px black',
                             }}
                             onClick={() => {
-                                const p = gctx.chordDetail.pointer
-                                const line = gctx.text.split('\n')[p.line];
-                                let newStr = `${gctx.chordDetail.text}(${i})`
-                                if (gctx.notation === 'lyric') {
-                                    newStr = `[${newStr}]`
-                                }                                
-                                if (i===0) {
-                                    newStr = newStr.replace('(0)', '')
-                                }
-                                const newLine = strSplice(line, p.start, p.end-p.start, newStr)
-                             
-                                const tmp = gctx.text.split('\n')
-                                gctx.text = [...(tmp.slice(0, p.line)),
-                                (newLine), ...(tmp.slice(p.line+1))].join(`\n`)
-
-                                gctx.makeScore()
-                                const thisChord = gctx.score[p.line].filter(e => {
-                                    return e.type === 'chord' && e.pointer.start === p.start
-                                })[0]
-                                gctx.chordDetail = thisChord as ScoreElementChord
-                                gctx.rerenderUI()
+                                gctx.changeVariationOfChord(gctx.chordDetail, i)
                             }}
                             >
                                 選択
@@ -200,20 +183,7 @@ export const ChordDetail: React.FC<{
 
 
 
-function chord2displayName(chord: ChordType): string {
-    if (chord.suffix === 'M') return chord.key
-    return chord.key + chord.suffix
-}
 
-export function strInsert(str: string, index: number, text: string) {
-    const res = str.slice(0, index) + text + str.slice(index);
-    return res;
-};
-
-export function strSplice(str: string, start: number, len: number, text: string) {
-    const res = str.slice(0, start) + text + str.slice(start+len);
-    return res;
-};
 
 const theGreen = '#4ade80'
 const thinGreen = '#bbf7d0'

@@ -1,3 +1,5 @@
+import { ChordType } from "./chords";
+
 export function downloadText(filename: string, text: string) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -22,6 +24,23 @@ export function getUrlParameter(name: string, url: string) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+
+
+
+export function chord2displayName(chord: ChordType): string {
+    if (chord.suffix === 'M') return chord.key
+    return chord.key + chord.suffix
+}
+
+export function strInsert(str: string, index: number, text: string) {
+    const res = str.slice(0, index) + text + str.slice(index);
+    return res;
+};
+
+export function strSplice(str: string, start: number, len: number, text: string) {
+    const res = str.slice(0, start) + text + str.slice(start + len);
+    return res;
+};
 
 
 

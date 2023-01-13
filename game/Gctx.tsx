@@ -1,5 +1,5 @@
 import { ChordData } from "./lib/chords"
-import { copyToClipboard, downloadText, getUrlParameter } from "./lib/lib"
+import { copyToClipboard, downloadText, getUrlParameter, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
@@ -84,5 +84,53 @@ export class Gctx {
     }
     
     
+
+    convertSimpleToLyric() {
+        this.score.map(line => {
+            line.map(scoreElement => {
+                if (scoreElement.type === 'chord') {
+
+                }
+            })
+        })
+        // this.score.map(scoreElement => {
+
+        // })
+    }
+
+    changeVariationOfChord(chord: ScoreElementChord, num: number) {
+        let newStr = `${chord.text}(${num})`
+        if (this.notation === 'lyric') {
+            newStr = `[${newStr}]`
+        }
+        if (num === 0) {
+            newStr = newStr.replace('(0)', '')
+        }
+        
+        this.changeTextOfChord(chord, newStr)
+
+        this.makeScore()
+        const p = chord.pointer
+        const thisChord = this.score[p.line].filter(e => {
+            return e.type === 'chord' && e.pointer.start === p.start
+        })[0]
+        chord = thisChord as ScoreElementChord
+        this.rerenderUI()
+
+    }
+
+    replaceLine(lineNum: number, newText: string) {
+        const tmp = this.text.split('\n')
+        this.text = [...(tmp.slice(0, lineNum)),
+        (newText), ...(tmp.slice(lineNum + 1))].join(`\n`)
+    }
+
+    changeTextOfChord(chord: ScoreElementChord, newStr: string) {
+        const p = chord.pointer
+        const line = this.text.split('\n')[p.line];
+        const newLine = strSplice(line, p.start, p.end - p.start, newStr)
+        this.replaceLine(p.line, newLine)
+    }
+       
 
 }
