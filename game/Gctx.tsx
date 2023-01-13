@@ -55,7 +55,7 @@ export class Gctx {
     }
 
     getShareURL() {
-        return location.href.replace(location.search, '') + `?text=${encodeURIComponent(this.text)}` + (this.instrument === 'ukulele' ? '&instrument=ukulele' : '')
+        return location.href.replace(location.search, '') + `?text=${encodeURIComponent(this.text)}` + (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') + (this.notation === 'simple' ? '&notation=simple' : '')
     }
 
     setText(text: string) {
@@ -74,6 +74,13 @@ export class Gctx {
             if (instrument === 'ukulele' || this.instrument === 'guitar') {
                 this.instrument = instrument as this['instrument']
             }            
+        }
+
+        const notation = getUrlParameter('notation', location.href)
+        if (notation && typeof notation === 'string') {
+            if (notation === 'simple' || this.notation === 'simple') {
+                this.notation = notation as this['notation']
+            }
         }
 
         this.makeScore()

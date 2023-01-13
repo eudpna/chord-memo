@@ -36,14 +36,14 @@ export const Setting: React.FC<{
                     gctx.makeScore()
                     gctx.rerenderUI()
                 }}>                    
-                    <option value="simple">シンプル</option>
                     <option value="lyric">歌詞付き</option>
+                    <option value="simple">シンプル</option>
                 </select>
             </div>
             <div className="text-xs">
-                シンプルモードでは、コード記号をスペースで区切ってそのまま記述する。（例： Em G7 C）
-                <br />
                 歌詞付きモードでは、コード記号を角括弧で囲う。（例： [G7]）
+                <br />
+                シンプルモードでは、コード記号をスペースで区切ってそのまま記述する。（例： Em G7 C）
             </div>
         </div>
     </div>
