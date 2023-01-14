@@ -22,13 +22,14 @@ export const sampleScores = [
     },
     {
         title: 'Take Me Home, Country Roads',
-        text: `[A]Almost heaven, [F#m]West Virginia
-[E]Blue Ridge Mountains, [D]Shenandoah [A]River
-[A]Life is old there, [F#m]older than the trees
-[E]Younger than the mountains, [D]blowing like a [A]breeze
-Country [A]roads, take me [E]home
-To the [F#m]place I be[D]long
-West Vir[A]ginia, Mountain [E]Mama
-Take me [D]home, country [A]roads`,
+        text: `[D]Almost Heaven; [Bm]West Virginia, [A]Blue Ridge Mountains, [G]Shenandoah [D]River.
+[D]Life is old there, [Bm]older than the trees, [A]younger than the mountains,
+[G]Blowin' like a [D]breeze.
+Country [D]Roads, take me [A]home, to the [Bm]place, I [G]belong,
+West [D]Virginia, mountain [A]mama, take me [G]home, country [D]roads.
+[Bm]I hear her [A]voice in the [D]morning hour she calls me
+[G]The radio [D]reminds me of my [A]home far away.
+And [Bm]driving down the [C]road I get a [G]feeling
+That I [D]should have been home[A] yesterday, [A7]yesterday.`,
     },
 ]
