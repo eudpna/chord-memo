@@ -1,14 +1,16 @@
 export const sampleScores = [
     {
         title: 'ハッピーバースデー',
-        text: `[C]ハッピーバースデイ トゥ[G]ユー
+        text: `ハッピーバースデートゥーユー
+[C]ハッピーバースデイ トゥ[G]ユー
 [G]ハッピーバースデイ トゥ[C]ユー
 [C]ハッピーバースデイ ディア [F]なんとか〜
 [F]ハッピー[C]バースデイ [G7]トゥ [C]ユー`,
     },
     {
         title: '風になる',
-        text: `[C]忘れていた目を閉じて[Am] 取り戻せ[F]恋のうた[G]
+        text: `風になる（by つじあやの）
+[C]忘れていた目を閉じて[Am] 取り戻せ[F]恋のうた[G]
 青空に[Em]隠れている[Am] 手を伸ばし[F]てもう一度[G]
 忘れない[C]ですぐそばに[Am]僕がいる[F]いつの日も[G]
 星空を[G]眺めている[Am]一人きり[F]の夜明[G7]けも[C]
@@ -22,7 +24,8 @@ export const sampleScores = [
     },
     {
         title: 'Take Me Home, Country Roads',
-        text: `[D]Almost Heaven; [Bm]West Virginia, [A]Blue Ridge Mountains, [G]Shenandoah [D]River.
+        text: `Take Me Home Country Roads (by John Denver)
+[D]Almost Heaven; [Bm]West Virginia, [A]Blue Ridge Mountains, [G]Shenandoah [D]River.
 [D]Life is old there, [Bm]older than the trees, [A]younger than the mountains,
 [G]Blowin' like a [D]breeze.
 Country [D]Roads, take me [A]home, to the [Bm]place, I [G]belong,

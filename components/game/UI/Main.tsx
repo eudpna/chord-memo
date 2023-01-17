@@ -1,3 +1,4 @@
+import Head from "next/head"
 import React, { useEffect, useState } from "react"
 import { Gctx } from "../../../game/Gctx"
 import { sampleScores } from "../../../game/sample"
@@ -15,9 +16,13 @@ export const Main: React.FC<{
     gctx: Gctx
 }> = (props) => {
     const gctx = props.gctx
-
+    const title = gctx.getTextFirstLineAsTitle()
 
     return <div className="pt-4 px-2 pb-3 max-w-3xl mx-auto">
+        {title && gctx.initialTitle === title ?
+        <Head>
+            <title>{title} | こーどめも</title>
+        </Head> : null}
         <div className="mb-6">
             <A href="/" className="text-xl font-bold text-gray-700 inline-block">
                 こーどめも

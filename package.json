@@ -24,6 +24,7 @@
     "react-dom": "17.0.1",
     "react-icons": "^4.7.1",
     "react-textarea-autosize": "^8.3.3",
+    "sanitize-filename": "^1.6.3",
     "tailwindcss": "^2.0.2",
     "uuid": "^9.0.0"
   },

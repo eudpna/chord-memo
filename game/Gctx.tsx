@@ -1,3 +1,4 @@
+import sanitize from "sanitize-filename"
 import { ChordData } from "./lib/chords"
 import { copyToClipboard, downloadText, getUrlParameter, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
@@ -18,6 +19,7 @@ export class Gctx {
     playingChords: string[] = []
     copiedMessage: number = 0
     notation: 'lyric' | 'simple' = 'lyric'
+    initialTitle: string = ''
 
     makeScore() {
         const lines = this.text.trim().split('\n').map((line, i) => {
@@ -29,7 +31,14 @@ export class Gctx {
     }
 
     downloadText() {
-        downloadText('コード譜.txt', this.text)
+        const title = this.getTextFirstLineAsTitle()
+        downloadText(title? sanitize(`コード譜 ${title}.txt`) : 'コード譜.txt', this.text)
+    }
+
+    getTextFirstLineAsTitle(): string | null {
+        const title = this.text.split(`\n`)[0].trim()
+        if (title === '') return null
+        return title
     }
 
     copyURLToClipBoard() {
@@ -68,6 +77,7 @@ export class Gctx {
         const text = getUrlParameter('text', location.href)
         if (text && typeof text === 'string') {
             this.setText(text)
+            this.initialTitle = this.getTextFirstLineAsTitle()
         }
         const instrument = getUrlParameter('instrument', location.href)
         if (instrument && typeof instrument === 'string') {
