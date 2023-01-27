@@ -49,7 +49,7 @@ export const Setting: React.FC<{
                     <option value="simple">シンプル</option>
                 </select>
             </div>
-            <div className="text-xs pl-0.5">
+            <div className="text-xs pl-0.5 pt-0.5">
                 歌詞付きモードでは、コード記号を角括弧で囲う。（例： [G7]）
                 <br />
                 シンプルモードでは、コード記号をスペースで区切ってそのまま記述する。（例： Em G7 C）

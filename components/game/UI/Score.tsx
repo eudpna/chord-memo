@@ -17,7 +17,7 @@ export const Score: React.FC<{
         marginLeft: 5,
         marginRight: 5,
         // marginRight: -5,
-        marginTop: 70,
+        marginTop: 45,
     }}>
         {/* {gctx.score.map((line)} */}
     {gctx.score.map((line, i) => <div key={i} style={{
