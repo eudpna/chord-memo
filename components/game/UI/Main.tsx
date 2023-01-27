@@ -18,8 +18,10 @@ export const Main: React.FC<{
     const gctx = props.gctx
     const title = gctx.getTextFirstLineAsTitle()
 
+    gctx.updateURL()
+
     return <div className="pt-4 px-2 pb-3 max-w-3xl mx-auto">
-        {title && gctx.initialTitle === title ?
+        {title ?
         <Head>
             <title>{title} | こーどめも</title>
         </Head> : null}
@@ -62,7 +64,7 @@ export const Main: React.FC<{
         <div className="mb-12">
             <Setting gctx={gctx} />
         </div>
-        <div className="text-sm mt-8">
+        {/* <div className="text-sm mt-8">
             このコード譜の保存・共有用URL
             <div className="relative">
                 <div className="bg-gray-200 p-0.5 text-xs relative" style={{
@@ -96,7 +98,7 @@ export const Main: React.FC<{
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         <div className="mt-8 text-sm">
             サンプル譜：
             {sampleScores.map(sample => {

@@ -66,6 +66,10 @@ export class Gctx {
     getShareURL() {
         return location.href.replace(location.search, '') + `?text=${encodeURIComponent(this.text)}` + (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') + (this.notation === 'simple' ? '&notation=simple' : '')
     }
+    
+    updateURL() {
+        history.replaceState(null, null, this.getShareURL())
+    }
 
     setText(text: string) {
         this.text = text
