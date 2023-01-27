@@ -26,6 +26,9 @@ export const Main: React.FC<{
         <Head>
             <title>{title} | こーどめも</title>
         </Head> : null}
+
+        {gctx.openWide ? null :
+        <div>
         <div className="mb-6">
             <A href="/" className="text-xl font-bold text-gray-700 inline-block">
                 こーどめも
@@ -156,6 +159,8 @@ export const Main: React.FC<{
                 {/* <span className="text-sm">(演奏時用)</span> */}
             </button>
         </div> : null}
+        </div>
+        }
 
         <div>
             {gctx.openWide ?

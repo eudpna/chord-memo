@@ -18,8 +18,8 @@ export const Wide: React.FC<{
         columnCount: gctx.columnCount,
         padding: 20,
         paddingTop: 40,
-        columnRule: 'solid 1px black'
-        
+        columnRule: 'solid 1px black',
+        overflowY: 'scroll',
     }}>
 
      
