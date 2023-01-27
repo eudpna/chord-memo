@@ -61,8 +61,24 @@ export const Main: React.FC<{
                 コード画像をクリックすると詳細を表示します。
             </div>
         </div>
-        <div className="mb-12">
+        <div className="mt-12">
             <Setting gctx={gctx} />
+        </div>
+        
+        <div className="mb-12 mt-8">
+            <div className="text-sm p-2 rounded pb-4" style={{
+                backgroundColor: '#eee'
+            }}>
+                <div className="font-bold pb-2" style={{
+                    color: '#444',
+                    fontSize: '1rem'
+                }}>
+                    保存・共有
+                </div>
+                <div className="pl-2">
+                    現在のこのページの状態を保存するには、ブラウザのアドレスバーのURLをコピーし、保管してください。
+                </div>
+            </div>
         </div>
         {/* <div className="text-sm mt-8">
             このコード譜の保存・共有用URL
@@ -108,12 +124,12 @@ export const Main: React.FC<{
                 </span>
             })}
         </div>
-        <div className="text-xs mt-6">
-            <div className="mb-4">
+        <div className="text-xs mt-4">
+            <div className="mb-12">
                 <A href="/list">利用可能なコード記号の一覧</A>
             </div>
-            <div>
-                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。2023/01/10
+            <div className="">
+                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。<br />最終更新: 2023/01/27
             </div>
             {/* <div>
                 このページの最終更新日は 2023/01/10
