@@ -21,6 +21,11 @@ export class Gctx {
     notation: 'lyric' | 'simple' = 'lyric'
     initialTitle: string = ''
 
+    // wide表示用
+    openWide = false
+    columnCount = '2'
+    
+
     makeScore() {
         const lines = this.text.trim().split('\n').map((line, i) => {
             if (this.notation === 'simple') return textToScoreSimpleNotation(line.trim(), i, this)
@@ -39,6 +44,13 @@ export class Gctx {
         const title = this.text.split(`\n`)[0].trim()
         if (title === '') return null
         return title
+    }
+
+    shouldEnableWide() {
+        if (!window) return false
+        console.log('width', window.screen.width)
+        if (window.screen.width < 1000) return false
+        return true
     }
 
     copyURLToClipBoard() {

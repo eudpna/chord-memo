@@ -9,6 +9,7 @@ import { Score } from "./Score"
 import { Setting } from "./Setting"
 
 import { TextField } from "./TextField"
+import { Wide } from "./Wide"
 
 
 
@@ -49,17 +50,19 @@ export const Main: React.FC<{
         <div>
             <Score gctx={gctx} />
         </div>
+     
 
         {/* <div className="text-sm pt-4">
             コードを長押しすると音が出ます（数字1~9キーを押しても可）
         </div> */}
+        <div className="text-xs">
+            コード画像をクリックすると詳細を表示します。
+        </div>
+
         <div className="relative" style={{
             zIndex: 10
         }}>
             <ChordDetail gctx={gctx} />
-            <div className="text-xs">
-                コード画像をクリックすると詳細を表示します。
-            </div>
         </div>
         <div className="mt-12">
             <Setting gctx={gctx} />
@@ -136,5 +139,29 @@ export const Main: React.FC<{
                 このページの最終更新日は 2023/01/10
             </div> */}
         </div>
+
+      
+
+            {gctx.shouldEnableWide() ?
+        <div>
+            <button className="p-2 px-4 rounded-full text-sm fixed z-0 bg-white text-black" style={{
+                border: 'solid 1px black',
+                right: 10,
+                bottom: 10,
+            }} onClick={() => {
+                gctx.openWide = true
+                gctx.rerenderUI()
+            }}> 
+                ワイド表示<br />
+                {/* <span className="text-sm">(演奏時用)</span> */}
+            </button>
+        </div> : null}
+
+        <div>
+            {gctx.openWide ?
+                <Wide gctx={gctx} /> : null}
+        </div>
+
+
     </div>
 }
