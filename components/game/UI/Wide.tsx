@@ -98,6 +98,7 @@ export const Wide: React.FC<{
 
                     gctx.rerenderUI()
                 }}>
+                    <option value="1">1段</option>
                     <option value="2">2段</option>
                     <option value="3">3段</option>
                     <option value="4">4段</option>
