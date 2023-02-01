@@ -3,6 +3,7 @@ import { ChordData } from "./lib/chords"
 import { copyToClipboard, downloadText, getUrlParameter, isNumeric, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
+import { parseChordMemoURL } from "./parseChordMemoURL"
 
 
 export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano' 
@@ -95,40 +96,8 @@ export class Gctx {
 
     constructor(public rerenderUI: Function) {
 
-        const text = getUrlParameter('text', location.href)
-        if (text && typeof text === 'string') {
-            this.setText(text)
-            // this.initiaalTitle = this.getTextFirstLineAsTitle()
-        }
-
-        const title = getUrlParameter('title', location.href)
-        if (title && typeof title === 'string') {
-            this.title = title
-        }
-
-        const instrument = getUrlParameter('instrument', location.href)
-        if (instrument && typeof instrument === 'string') {
-            if (instrument === 'ukulele' || this.instrument === 'guitar') {
-                this.instrument = instrument as this['instrument']
-            }            
-        }
-
-        const notation = getUrlParameter('notation', location.href)
-        if (notation && typeof notation === 'string') {
-            if (notation === 'simple' || this.notation === 'simple') {
-                this.notation = notation as this['notation']
-            }
-        }
-
-        const columns = getUrlParameter('columns', location.href)
-        if (title && typeof columns === 'string' &&
-        isNumeric(columns)
-        ) {
-            const col = Number(columns)
-            if (col % 1 === 0 && col > 0 && col < 5) {
-                this.columns = col
-            }
-        }
+      
+        this.loadURL()        
 
         this.makeScore()
         this.rerenderUI()
@@ -138,6 +107,28 @@ export class Gctx {
         return playSounds(this.instrument, keyIds)
     }
     
+    loadURL() {
+        const url = parseChordMemoURL()
+
+        if (url.title !== null) {
+            this.title = url.title
+        }
+        if (url.text !== null) {
+            this.setText(url.text)
+        }
+        if (url.instrument !== null) {
+            this.instrument = url.instrument
+        }
+        if (url.columns !== null) {
+            this.columns = url.columns
+        }
+        if (url.notation !== null) {
+            this.notation = url.notation
+        }
+
+        this.makeScore()
+        this.rerenderUI()
+    }
     
 
     convertSimpleToLyric() {
