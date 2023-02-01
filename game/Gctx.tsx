@@ -11,6 +11,7 @@ export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano'
 // export type Score = (string | ChordData[])[]
 
 export class Gctx {
+    title: string = ''
     text: string = ''
     // soundType: SoundType = 'guitar'
     score: Score[]
@@ -19,8 +20,7 @@ export class Gctx {
     playingChords: string[] = []
     copiedMessage: number = 0
     notation: 'lyric' | 'simple' = 'lyric'
-    initialTitle: string = ''
-
+ 
     // wide表示用
     openWide = false
     columnCount = '2'
@@ -36,15 +36,14 @@ export class Gctx {
     }
 
     downloadText() {
-        const title = this.getTextFirstLineAsTitle()
-        downloadText(title? sanitize(`コード譜 ${title}.txt`) : 'コード譜.txt', this.text)
+        downloadText(this.title? sanitize(`コード譜 ${this.title}.txt`) : 'コード譜.txt', this.text)
     }
 
-    getTextFirstLineAsTitle(): string | null {
-        const title = this.text.split(`\n`)[0].trim()
-        if (title === '') return null
-        return title
-    }
+    // getTextFirstLineAsTitle(): string | null {
+    //     const title = this.text.split(`\n`)[0].trim()
+    //     if (title === '') return null
+    //     return title
+    // }
 
     shouldEnableWide() {
         if (!window) return false
@@ -76,7 +75,11 @@ export class Gctx {
     }
 
     getShareURL() {
-        return location.href.replace(location.search, '') + `?text=${encodeURIComponent(this.text)}` + (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') + (this.notation === 'simple' ? '&notation=simple' : '')
+        return location.href.replace(location.search, '') +
+        `?title=${encodeURIComponent(this.title.trim())}` +
+        `&text=${encodeURIComponent(this.text)}` +
+        (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') +
+        (this.notation === 'simple' ? '&notation=simple' : '')
     }
     
     updateURL() {
@@ -93,9 +96,13 @@ export class Gctx {
         const text = getUrlParameter('text', location.href)
         if (text && typeof text === 'string') {
             this.setText(text)
-            this.initialTitle = this.getTextFirstLineAsTitle()
+            // this.initiaalTitle = this.getTextFirstLineAsTitle()
         }
+        const title = getUrlParameter('title', location.href)
         const instrument = getUrlParameter('instrument', location.href)
+        if (title && typeof title === 'string') {
+            this.title = title
+        }
         if (instrument && typeof instrument === 'string') {
             if (instrument === 'ukulele' || this.instrument === 'guitar') {
                 this.instrument = instrument as this['instrument']

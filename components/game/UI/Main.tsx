@@ -17,7 +17,7 @@ export const Main: React.FC<{
     gctx: Gctx
 }> = (props) => {
     const gctx = props.gctx
-    const title = gctx.getTextFirstLineAsTitle()
+    const title = gctx.title
 
     gctx.updateURL()
 
@@ -126,8 +126,7 @@ export const Main: React.FC<{
             サンプル譜：
             {sampleScores.map(sample => {
                 return <span key={sample.title}>
-                    /<A href={location.href.replace(location.search, '') + `?text=${encodeURIComponent(sample.text)}`+(sample.instrument==='ukulele' ? '&instrument=ukulele' : '')}> {sample.title} </A>
-                    {/* <A key={sample.title} href={`https://${location.hostname}/?text=${encodeURIComponent(sample.text)}`}> {sample.title} </A>/ */}
+                    /<A href={location.href.replace(location.search, '') + `?title=${encodeURIComponent(sample.title)}&text=${encodeURIComponent(sample.text)}`+(sample.instrument==='ukulele' ? '&instrument=ukulele' : '')}> {sample.title} </A>
                 </span>
             })}
         </div>
