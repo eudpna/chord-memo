@@ -76,3 +76,8 @@ export const copyToClipboard = (text: string): Promise<void> => {
             new Error("Copy is not supported or enable on this device.")
         );
 };
+
+
+export function isNumeric(value: string) {
+    return /^-?\d+$/.test(value);
+}

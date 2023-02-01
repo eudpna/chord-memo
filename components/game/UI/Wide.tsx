@@ -15,7 +15,7 @@ export const Wide: React.FC<{
 
     return <div className="noselect fixed inset-0 bg-white" style={{
         // backgroundColor: 'rgba(255,255,255,0.95)',
-        columnCount: gctx.columnCount,
+        columnCount: gctx.columns,
         padding: 20,
         paddingTop: 40,
         columnRule: 'solid 1px black',
@@ -90,11 +90,11 @@ export const Wide: React.FC<{
                 bottom: 10,
             }}>
                 段数：
-                <select value={gctx.columnCount} className="rounded border-gray-400 bg-white px-3" style={{
+                <select value={gctx.columns} className="rounded border-gray-400 bg-white px-3" style={{
                     border: 'solid 1px rgb(156,163,175)'
                 }} name="" id="" onChange={(e) => {
 
-                    gctx.columnCount = e.target.value
+                    gctx.columns = Number(e.target.value)
 
                     gctx.rerenderUI()
                 }}>

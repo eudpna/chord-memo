@@ -1,6 +1,6 @@
 import sanitize from "sanitize-filename"
 import { ChordData } from "./lib/chords"
-import { copyToClipboard, downloadText, getUrlParameter, strSplice } from "./lib/lib"
+import { copyToClipboard, downloadText, getUrlParameter, isNumeric, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 
@@ -13,6 +13,7 @@ export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano'
 export class Gctx {
     title: string = ''
     text: string = ''
+    columns: number = 2
     // soundType: SoundType = 'guitar'
     score: Score[]
     instrument: 'guitar' | 'ukulele' = 'guitar'
@@ -23,7 +24,6 @@ export class Gctx {
  
     // wide表示用
     openWide = false
-    columnCount = '2'
     
 
     makeScore() {
@@ -76,10 +76,11 @@ export class Gctx {
 
     getShareURL() {
         return location.href.replace(location.search, '') +
-        `?title=${encodeURIComponent(this.title.trim())}` +
-        `&text=${encodeURIComponent(this.text)}` +
-        (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') +
-        (this.notation === 'simple' ? '&notation=simple' : '')
+            `?title=${encodeURIComponent(this.title.trim())}` +
+            `&text=${encodeURIComponent(this.text)}` +
+            `&columns=${encodeURIComponent(this.columns)}` +
+            (this.instrument === 'ukulele' ? '&instrument=ukulele' : '') +
+            (this.notation === 'simple' ? '&notation=simple' : '')
     }
     
     updateURL() {
@@ -93,16 +94,19 @@ export class Gctx {
     }
 
     constructor(public rerenderUI: Function) {
+
         const text = getUrlParameter('text', location.href)
         if (text && typeof text === 'string') {
             this.setText(text)
             // this.initiaalTitle = this.getTextFirstLineAsTitle()
         }
+
         const title = getUrlParameter('title', location.href)
-        const instrument = getUrlParameter('instrument', location.href)
         if (title && typeof title === 'string') {
             this.title = title
         }
+
+        const instrument = getUrlParameter('instrument', location.href)
         if (instrument && typeof instrument === 'string') {
             if (instrument === 'ukulele' || this.instrument === 'guitar') {
                 this.instrument = instrument as this['instrument']
@@ -113,6 +117,16 @@ export class Gctx {
         if (notation && typeof notation === 'string') {
             if (notation === 'simple' || this.notation === 'simple') {
                 this.notation = notation as this['notation']
+            }
+        }
+
+        const columns = getUrlParameter('columns', location.href)
+        if (title && typeof columns === 'string' &&
+        isNumeric(columns)
+        ) {
+            const col = Number(columns)
+            if (col % 1 === 0 && col > 0 && col < 5) {
+                this.columns = col
             }
         }
 

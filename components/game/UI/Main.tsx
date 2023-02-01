@@ -62,11 +62,7 @@ export const Main: React.FC<{
             コード画像をクリックすると詳細を表示します。
         </div>
 
-        <div className="relative" style={{
-            zIndex: 10
-        }}>
-            <ChordDetail gctx={gctx} />
-        </div>
+      
         <div className="mt-12">
             <Setting gctx={gctx} />
         </div>
@@ -135,7 +131,7 @@ export const Main: React.FC<{
                 <A href="/list">利用可能なコード記号の一覧</A>
             </div>
             <div className="">
-                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。<br />最終更新: 2023/01/27
+                不具合報告や要望などは <A href="https://twitter.com/teiwv">@teiwv</A> まで。<br />最終更新: 2023/02/02
             </div>
             {/* <div>
                 このページの最終更新日は 2023/01/10
@@ -164,6 +160,13 @@ export const Main: React.FC<{
         <div>
             {gctx.openWide ?
                 <Wide gctx={gctx} /> : null}
+        </div>
+
+
+        <div className="relative" style={{
+            zIndex: 10
+        }}>
+            <ChordDetail gctx={gctx} />
         </div>
 
 
