@@ -13,11 +13,14 @@ export const Score: React.FC<{
 
     if (!gctx.score) return null
 
-    return <div className="noselect" style={{
+    return <div className="noselect pt-8" style={{
         marginLeft: 5,
         marginRight: 5,
         // marginRight: -5,
         marginTop: 45,
+        
+        overflow: 'hidden',
+        overflowWrap: 'anywhere',
     }}>
         {/* {gctx.score.map((line)} */}
     {gctx.score.map((line, i) => <div key={i} style={{

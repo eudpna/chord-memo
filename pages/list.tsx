@@ -12,17 +12,20 @@ import { solfaArr } from '../game/lib/sound/solfa'
 
 function list(instrumentChords: typeof guitarChords | typeof ukuleleChords) {
     return solfaArr.map(key => {
-        const chords =  instrumentChords.getChordsByKey(key)
+        const chords = instrumentChords.getChordsByKey(key)
         return <div>
             <div className='text-lg font-bold mt-6'>
                 {key.replace('sharp', '#')}
             </div>
-            <div className='text-sm'>
-                {chords.map(c => {
-                    return <span key={chordToName(c)}>
-                        {chordToName(c)}　
-                    </span>
-                })}
+            <div className='text-sm' style={{
+                wordBreak: 'break-word',
+                lineHeight: 2,
+            }}>
+                {
+                    chords.map(c => {
+                        return chordToName(c)
+                    }).join('　')
+                }
             </div>
         </div>
     })

@@ -18,7 +18,7 @@ export const Wide: React.FC<{
         columnCount: gctx.columns,
         padding: 20,
         paddingTop: 40,
-        columnRule: 'solid 1px black',
+        columnRule: 'solid 1px #bbb',
         overflowY: 'scroll',
     }}>
 
@@ -72,7 +72,7 @@ export const Wide: React.FC<{
             </div>
 
             <button className="p-2 px-4 rounded-full fixed text-sm bg-white text-black" style={{
-                border: 'solid 1px black',
+                border: 'solid 1px #bbb',
                 right: 10,
                 bottom: 10,
             }} onClick={() => {
@@ -90,8 +90,8 @@ export const Wide: React.FC<{
                 bottom: 10,
             }}>
                 段数：
-                <select value={gctx.columns} className="rounded border-gray-400 bg-white px-3" style={{
-                    border: 'solid 1px rgb(156,163,175)'
+                <select value={gctx.columns} className="rounded  bg-white px-3" style={{
+                    border: 'solid 1px #bbb'
                 }} name="" id="" onChange={(e) => {
 
                     gctx.columns = Number(e.target.value)
