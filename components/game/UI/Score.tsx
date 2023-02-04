@@ -24,7 +24,7 @@ export const Score: React.FC<{
     }}>
         {/* {gctx.score.map((line)} */}
     {gctx.score.map((line, i) => <div key={i} style={{
-        minHeight: 90,
+        minHeight: 80,
         marginBottom: 10,
     }}>
         {line.map((scoreElement, index) => {
@@ -34,15 +34,15 @@ export const Score: React.FC<{
                     // top: 20,
                     // lineHeight: 3,
                     // height: 45,
-                    lineHeight: '80px',
+                    lineHeight: '40px',
                     // overflow: 'hidden'
                 }}>
                     {scoreElement.text}
                 </div>                
             }
              return <span key={index} className="inline-block relative" style={{
-                height: 45,
-                width: 40,
+                 height: gctx.notation === 'lyric' ? 45 : 80,
+                width: gctx.notation === 'lyric' ? 40 : 48,
                 marginLeft: (index !== 0 && line[index-1].type === 'chord') ? 10 : -10,
                 // overflow: 'visible'
                 //  lineHeight: '80px'

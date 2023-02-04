@@ -74,8 +74,18 @@ export const Main: React.FC<{
 
 
 
-                        <div className="mt-12 pb-16">
+                        <div className="mt-12">
                             <Setting gctx={gctx} />
+                        </div>
+
+                        <div className="mt-6 pb-4">
+                            <div className="text-xs text-right" style={{
+                            }}>
+                                <A href={gctx.getChordShortcutURL()}>
+                                    ChordShortcutで開く
+                                </A>
+
+                            </div>
                         </div>
                     </div>
 

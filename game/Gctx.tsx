@@ -197,4 +197,34 @@ export class Gctx {
     }
        
 
+    getChordShortcutURL() {
+        const chordNames: string[] = []
+        
+        this.score.flatMap(s => s).filter(score => score.type === 'chord')
+        .map(score => {
+            const s = score as ScoreElementChord
+            if (!chordNames.includes(s.chordName)) {
+                chordNames.push(s.chordName)
+            }
+        })
+        let text = ''
+        let count = 1
+        chordNames.map(chordName => {
+            text = text + chordName
+            // 空白入れ
+            text = text + ' '
+            // 改行入れ
+            if (count % 10 === 0) {
+                text = text + '\n'
+            }
+            count++
+        })
+        text = text.trim()
+
+
+        return `https://chordshortcut.nyaw.net/` +
+            `?title=${encodeURIComponent(this.title.trim())}` +
+            `&text=${encodeURIComponent(text)}`
+    }
+
 }
