@@ -34,7 +34,7 @@ export const Score: React.FC<{
                     // top: 20,
                     // lineHeight: 3,
                     // height: 45,
-                    lineHeight: '40px',
+                    lineHeight: '80px',
                     // overflow: 'hidden'
                 }}>
                     {scoreElement.text}
