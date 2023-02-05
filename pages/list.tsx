@@ -48,7 +48,7 @@ const Index: React.FC<{}> = () => {
                     marginLeft: -5,
 
                 }}>
-                    利用可能なコード記号の一覧
+                    利用可能なコード名の一覧
                 </div>
                 <div className='text-sm' style={{
                     marginLeft: -3,

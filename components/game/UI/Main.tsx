@@ -90,9 +90,9 @@ export const Main: React.FC<{
                         <div className="text-xs">
                             <div className="font-bold">記法について</div>
                             <div className="ml-1">
-                                歌詞付きモードでは、コード記号を角括弧で囲う。（例： [G7]）
+                                歌詞付きモードでは、コード名を角括弧で囲う。（例： [G7]）
                                 <br />
-                                シンプルモードでは、コード記号をスペースで区切ってそのまま記述する。（例： Em G7 C）
+                                シンプルモードでは、コード名をスペースで区切ってそのまま記述する。（例： Em G7 C）
                             </div>
                         </div>
 
