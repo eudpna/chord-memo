@@ -9,7 +9,7 @@ export type URLParameters = {
     notation: Gctx['notation'] | null
 }
 
-export function parseChordMemoURL() {
+export function parseURL() {
     const result: URLParameters = {
         title: null,
         text: null,

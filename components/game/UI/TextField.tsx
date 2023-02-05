@@ -8,7 +8,7 @@ export const TextField: React.FC<{
 
     return <div className=" p-0">
         <div
-        className="mb-3 mt-2" 
+            className="mb-3 mt-2"
         >
             <div className="text-xs" style={{
                 color: '#888'
@@ -16,34 +16,33 @@ export const TextField: React.FC<{
                 タイトル
             </div>
             <input type="text" className="p-1 resize-none w-full border rounded"
-             value={gctx.title}
-            placeholder="タイトル"
-            onChange={(e) => {
-                gctx.title = e.target.value
-                gctx.rerenderUI()
-            }} style={{
-                width: '100%',
-                border: 'solid 1px #bbb',
-            }} />
-        </div>  
+                value={gctx.title}
+                placeholder="タイトル"
+                onChange={(e) => {
+                    gctx.title = e.target.value
+                    gctx.rerenderUI()
+                }} style={{
+                    width: '100%',
+                    border: 'solid 1px #bbb',
+                }} />
+        </div>
 
-        
+
         <div className="text-xs" style={{
             color: '#888'
         }}>
             コード譜入力
         </div>
-        <TextareaAutosize 
+        <TextareaAutosize
             value={gctx.text}
-        placeholder={gctx.notation==='lyric'?"歌詞とコードを入力":'コードを入力'}
+            placeholder={gctx.notation === 'lyric' ? "歌詞とコードを入力" : 'コードを入力'}
             className="p-1 resize-none w-full border  rounded" style={{
                 border: 'solid 1px #bbb',
                 lineHeight: 1.5,
-            // fontSize: '16px'
-        }} minRows={3} onChange={(e) => {
-            gctx.text = (e.target.value)
-            gctx.rerenderUI()
-            gctx.makeScore()
-        }}></TextareaAutosize>
+            }} minRows={3} onChange={(e) => {
+                gctx.text = (e.target.value)
+                gctx.rerenderUI()
+                gctx.makeScore()
+            }}></TextareaAutosize>
     </div>
 }

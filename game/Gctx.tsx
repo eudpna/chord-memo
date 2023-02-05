@@ -1,21 +1,16 @@
 import sanitize from "sanitize-filename"
-import { ChordData } from "./lib/chords"
-import { copyToClipboard, downloadText, getUrlParameter, isNumeric, strSplice } from "./lib/lib"
+import { copyToClipboard, downloadText, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
-import { parseChordMemoURL } from "./parseChordMemoURL"
+import { parseURL } from "./parseURL"
 
 
 export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano' 
-
-
-// export type Score = (string | ChordData[])[]
 
 export class Gctx {
     title: string = ''
     text: string = ''
     columns: number = 2
-    // soundType: SoundType = 'guitar'
     score: Score[]
     instrument: 'guitar' | 'ukulele' = 'guitar'
     chordDetail: null | ScoreElementChord = null
@@ -40,12 +35,6 @@ export class Gctx {
         downloadText(this.title? sanitize(`コード譜 ${this.title}.txt`) : 'コード譜.txt', this.text)
     }
 
-    // getTextFirstLineAsTitle(): string | null {
-    //     const title = this.text.split(`\n`)[0].trim()
-    //     if (title === '') return null
-    //     return title
-    // }
-
     shouldEnableWide() {
         if (!window) return false
         console.log('width', window.screen.width)
@@ -63,16 +52,6 @@ export class Gctx {
                 this.rerenderUI()
             }, 2000);
         })
-        // if (navigator && navigator.clipboard) {
-        //     navigator.clipboard.writeText(this.getShareURL())
-        //     this.copiedMessage++
-        //     this.rerenderUI()
-        //     setTimeout(() => {
-        //         this.copiedMessage--
-        //         this.rerenderUI()
-        //     }, 2000);
-        // }
-        
     }
 
     getShareURL() {
@@ -95,8 +74,6 @@ export class Gctx {
     }
 
     constructor(public rerenderUI: Function) {
-
-      
         this.loadURL()        
 
         this.makeScore()
@@ -108,7 +85,7 @@ export class Gctx {
     }
     
     loadURL() {
-        const url = parseChordMemoURL()
+        const url = parseURL()
 
         if (url.title !== null) {
             this.title = url.title
@@ -183,8 +160,6 @@ export class Gctx {
         const tmp = this.text.split('\n')
         this.text = [...(tmp.slice(0, lineNum)),
         (newText), ...(tmp.slice(lineNum + 1))].join(`\n`)
-        // this.makeScore()
-        // this.rerenderUI()
     }
 
     changeTextOfChord(chord: ScoreElementChord, newStr: string) {
@@ -192,8 +167,6 @@ export class Gctx {
         const line = this.text.split('\n')[p.line];
         const newLine = strSplice(line, p.start, p.end - p.start, newStr)
         this.replaceLine(p.line, newLine)
-        // this.makeScore()
-        // this.rerenderUI()
     }
        
 
@@ -210,10 +183,7 @@ export class Gctx {
         let text = ''
         let count = 1
         chordNames.map(chordName => {
-            text = text + chordName
-            // 空白入れ
-            text = text + ' '
-            // 改行入れ
+            text = text + chordName + ' '
             if (count % 10 === 0) {
                 text = text + '\n'
             }

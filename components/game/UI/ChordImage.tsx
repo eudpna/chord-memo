@@ -1,5 +1,4 @@
-import { Howl } from "howler"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { Gctx } from "../../../game/Gctx"
 import { ChordData, chordToName } from "../../../game/lib/chords"
 import { guitarInstrument } from "../../../game/lib/instruments"
@@ -29,32 +28,16 @@ export const ChordImage: React.FC<{
         const texts = root.getElementsByTagName('text')
         Array.from(texts).map(text => {
             text.style.fill = '#777'
-            // text.style.zIndex = '1'
             text.style.stroke = '#777'
             if (text.getAttribute('font-size') === '0.25rem') {
                text.setAttribute('font-size', '0.9rem')
-                
-                
-                // text.setAttribute('transform', "translateX('-1rem')")
-                // text.setAttribute('x', "-20")
-                // text.style.marginLeft = '-20px'
-                // text.style.left = '-20px'
-                // text.style.textOverflow = 'visible'
-                // text.style.overflow = 'visible'
-                // text.parentElement.style.overflow = 'visible'
-                // text.parentElement.style.width = '100px'
-                // text.parentElement.style.height = '100px'
-                // text.setAttribute('overflow', "visible")
             }
         })
     }
 
-    
     useEffect(() => {
         kaizou()
     });
-
-    // kaizou()
 
     return <div>
         {props.noName ? null :

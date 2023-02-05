@@ -31,9 +31,7 @@ export const ChordEl: React.FC<{
         width: 60,
         left: 20,
         bottom: 10,
-        // backgroundColor: state.sounds.length !== 0 ? '#ddd' : 'transparent'
-    }}>
-        {/* {props.scoreElementChord.text} */}
+    }}>        
         {chordName}
     </div>
     return <div className=" inline-block rounded  absolute" style={{

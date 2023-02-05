@@ -1,10 +1,7 @@
 
 import Head from 'next/head'
-import React, { useEffect } from 'react'
-import { GameEl } from '../components/game/GameEl'
-import { chordToName, guitarChords, guitarChordsData, ukuleleChords, ukuleleChordsData } from '../game/lib/chords'
-import guitar from '@tombatossals/chords-db/lib/guitar.json'
-import ukulele from '@tombatossals/chords-db/lib/ukulele.json'
+import React from 'react'
+import { chordToName, guitarChords, ukuleleChords } from '../game/lib/chords'
 import { A } from '../components/A'
 import { solfaArr } from '../game/lib/sound/solfa'
 

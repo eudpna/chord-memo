@@ -1,20 +1,15 @@
-import React, { useEffect, useRef, useState } from "react"
-import ChordImg from '@tombatossals/react-chords/lib/Chord'
-import { ChordData, chordToName, guitarChords } from "../../../game/lib/chords"
-import { guitarInstrument } from "../../../game/lib/instruments"
-import { Howl } from "howler"
-import { Gctx, SoundType } from "../../../game/Gctx"
+import React, { } from "react"
+import { Gctx } from "../../../game/Gctx"
 import { ChordEl } from "./ChordEl"
 
 export const Wide: React.FC<{
-    gctx: Gctx    
+    gctx: Gctx
 }> = (props) => {
     const gctx = props.gctx
 
     if (!gctx.score) return null
 
     return <div className="noselect fixed inset-0 bg-white" style={{
-        // backgroundColor: 'rgba(255,255,255,0.95)',
         columnCount: gctx.columns,
         padding: 20,
         paddingTop: 40,
@@ -22,52 +17,35 @@ export const Wide: React.FC<{
         overflowY: 'scroll',
     }}>
 
-     
-       
-        {/* {gctx.score.map((line)} */}
-    {gctx.score.map((line, i) => <div key={i} style={{
-        minHeight: 90,
-        marginBottom: 10,
-    }}>
-        {line.map((scoreElement, index) => {
-            if (scoreElement.type === 'lyric') {
-                return <div key={index} className="font-bold inline-block text-sm" style={{
-                    color: '#a33c3c',
-                    // top: 20,
-                    // lineHeight: 3,
-                    // height: 45,
-                    lineHeight: '80px',
-                    // overflow: 'hidden'
+        {gctx.score.map((line, i) => <div key={i} style={{
+            minHeight: 90,
+            marginBottom: 10,
+        }}>
+            {line.map((scoreElement, index) => {
+                if (scoreElement.type === 'lyric') {
+                    return <div key={index} className="font-bold inline-block text-sm" style={{
+                        color: '#a33c3c',
+                        lineHeight: '80px',
+                    }}>
+                        {scoreElement.text}
+                    </div>
+                }
+                return <span key={index} className="inline-block relative" style={{
+                    height: 45,
+                    width: 40,
+                    marginLeft: (index !== 0 && line[index - 1].type === 'chord') ? 10 : -10,
                 }}>
-                    {scoreElement.text}
-                </div>                
-            }
-             return <span key={index} className="inline-block relative" style={{
-                height: 45,
-                width: 40,
-                marginLeft: (index !== 0 && line[index-1].type === 'chord') ? 10 : -10,
-                // overflow: 'visible'
-                //  lineHeight: '80px'
-                
-            }}>
-                <ChordEl gctx={props.gctx} scoreElementChord={scoreElement} />
-            </span>
-        }
-            
-        )}
-    </div>)}
-
-
-
-
+                    <ChordEl gctx={props.gctx} scoreElementChord={scoreElement} />
+                </span>
+            })}
+        </div>)}
 
         <div>
-            <div className="fixed " style={{
+            <div className="fixed" style={{
                 right: 0,
                 bottom: 0,
                 width: 230,
                 height: 65,
-                // background: 'rgba(255,255,255,0.8)',
             }}>
             </div>
 
@@ -80,9 +58,7 @@ export const Wide: React.FC<{
                 gctx.rerenderUI()
             }}>
                 閉じる<br />
-                {/* <span className="text-sm">(演奏時用)</span> */}
             </button>
-
 
 
             <div className="fixed" style={{
@@ -104,9 +80,7 @@ export const Wide: React.FC<{
                     <option value="4">4段</option>
                 </select>
             </div>
-
         </div>
 
-        
     </div>
 }

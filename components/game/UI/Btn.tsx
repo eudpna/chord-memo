@@ -12,10 +12,7 @@ export const Btn: React.FC<ButtonHTMLAttributes<any> & {
     disabled?: boolean
 }> = (props) => {
     const className = props.className ? props.className : ""
-
-    // const style = props.style?props.style:{}
     
-
     let color = 'white'
     if (props.colorType) {
         if (props.colorType === 'red') {
@@ -28,16 +25,12 @@ export const Btn: React.FC<ButtonHTMLAttributes<any> & {
             color = '#dea32f'
         }
         if (props.colorType === 'blue') {
-            // color = '#93c5fd'
-            color = '#a4f797'
-            // color = '#86efac'
+             color = '#a4f797'
         }
     }
 
     
     
-
-
     const { colorType, style, disabled, ...rest } = props;
     
         

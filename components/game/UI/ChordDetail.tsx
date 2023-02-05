@@ -1,18 +1,12 @@
 
-import Chord from '@tombatossals/react-chords/lib/Chord'
 import instruments from '@tombatossals/chords-db/lib/instruments.json'
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import { Gctx } from '../../../game/Gctx'
-import { ChordType, guitarChords, ukuleleChords } from '../../../game/lib/chords'
-// import { ChordType, name2url } from "../../../lib/chords"
-import ChordImg from '@tombatossals/react-chords/lib/Chord'
-import { ChordEl } from './ChordEl'
-import { keyidToPitch } from '../../../game/lib/sound/keyIdToPitch'
+import { guitarChords, ukuleleChords } from '../../../game/lib/chords'
 import { ChordImage } from './ChordImage'
 import { removeItemOnce } from '../../../game/lib/array'
-import { removeParenthes, ScoreElementChord } from '../../../game/lib/score'
 import { CloseIcon } from '../../icons/CloseIcon'
-import { chord2displayName, strSplice } from '../../../game/lib/lib'
+import { chord2displayName } from '../../../game/lib/lib'
 
 
 
@@ -39,8 +33,6 @@ export const ChordDetail: React.FC<{
 
     if (!gctx.chordDetail) return null
 
-    // const c = gctx.chordDetail
-    // const positions = c.positions
     const chord = ( gctx.instrument === 'guitar' ? guitarChords : ukuleleChords).getChordByName(gctx.chordDetail.chordName)
     return (
         <div className='p-1 fixed inset-0' style={{
@@ -57,14 +49,11 @@ export const ChordDetail: React.FC<{
                 <div className='flex-1'></div>
         <div 
         className='prevent-shot pt-3 pb-8 px-2 bg-white rounded relative'
-            // className="w-full max-w-sm mx-auto border-2 my-4 rounded-lg cursor-pointer relative pb-2 bg-gray-200"
             style={{
-                // border: 'solid 1px rgb(156,163,175)',
                 margin: 10,
                 marginTop: 20,
                 width: 380,
                 height: 'auto'
-                // border: 'solid 1px black'
             }}
         >
             <div  style={{
@@ -135,13 +124,6 @@ export const ChordDetail: React.FC<{
                             }}>
                                 {isPlaying ? '再生中…' : '音を再生' }
                             </button>
-                            {/* <div className='text-xs'>
-                                構成音: {position.midi.map(num => {
-                                    const pitch = keyidToPitch(num)
-                                    // return String(pitch.octave) + pitch.solfa + ' '
-                                    return <span><span className='text-xs'>{String(pitch.octave)}</span><span className='font-bold'>{pitch.solfa}</span> </span>
-                                })}
-                            </div> */}
                         </div>
                         <div>
                             {isSelected ? 
@@ -158,7 +140,6 @@ export const ChordDetail: React.FC<{
                             <button className='rounded  py-1 mt-2' style={{
                                 width: 80,
                                     border: 'solid 1px rgb(156,163,175)',
-                                // border: 'solid 1px black',
                             }}
                             onClick={() => {
                                 gctx.changeVariationOfChord(gctx.chordDetail, i)

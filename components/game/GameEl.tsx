@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import conf from "../../game/conf";
 import { Gctx } from "../../game/Gctx";
 import { Main } from "./UI/Main";
 
