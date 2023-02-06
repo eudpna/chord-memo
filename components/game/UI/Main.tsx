@@ -68,17 +68,17 @@ export const Main: React.FC<{
                         </div>
 
                         <div className="mt-6 pb-4">
-                            <div className="text-xs text-right pr-0.5" style={{
-                            }}>
-                                <A href='/'>
-                                    新規作成
-                                </A>
-                            </div>
-
                             <div className="text-xs text-right" style={{
                             }}>
                                 <A href={gctx.getChordShortcutURL()}>
                                     この譜面をChordShortcutで開く
+                                </A>
+                            </div>
+
+                            <div className="text-xs text-right pr-0.5" style={{
+                            }}>
+                                <A href='/'>
+                                    新規作成
                                 </A>
                             </div>
                         </div>
