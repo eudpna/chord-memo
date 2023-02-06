@@ -68,10 +68,17 @@ export const Main: React.FC<{
                         </div>
 
                         <div className="mt-6 pb-4">
+                            <div className="text-xs text-right pr-0.5" style={{
+                            }}>
+                                <A href='/'>
+                                    新規作成
+                                </A>
+                            </div>
+
                             <div className="text-xs text-right" style={{
                             }}>
                                 <A href={gctx.getChordShortcutURL()}>
-                                    ChordShortcutで開く
+                                    この譜面をChordShortcutで開く
                                 </A>
                             </div>
                         </div>
@@ -99,9 +106,9 @@ export const Main: React.FC<{
                         <div className="mt-4 text-xs" style={{
                             lineHeight: 1.3,
                         }}>
-                            <div className="font-bold">保存方法</div>
+                            <div className="font-bold">保存方法・共有方法</div>
                             <div className="ml-1">
-                                このページの現在の状態を保存するには、ブラウザのアドレスバーのURLをコピーして保管するか、ブックマークしてください。（URLには、このページの現在の設定とコード譜の情報が含まれています。）
+                                譜面を保存するには、ブラウザのアドレスバーのURLをコピーして保管するかブックマークしてください。譜面を他人と共有するには、URLを相手に送ってください。（URLにはこのページの現在の譜面が記録されています。）
                             </div>
                         </div>
 
@@ -154,7 +161,7 @@ export const Main: React.FC<{
                             gctx.openWide = true
                             gctx.rerenderUI()
                         }}>
-                            ワイド表示<br />
+                            全画面表示<br />
                         </button>
                     </div> : null}
             </div>
