@@ -1,3 +1,4 @@
+import { conf } from "./conf"
 import { Gctx } from "./Gctx"
 import { getUrlParameter, isNumeric } from "./lib/lib"
 
@@ -28,8 +29,6 @@ export function parseURL() {
         result.text = text
     }
 
-  
-
     const instrument = getUrlParameter('instrument', location.href)
     if (instrument && typeof instrument === 'string') {
         if (instrument === 'ukulele' || this.instrument === 'guitar') {
@@ -45,12 +44,13 @@ export function parseURL() {
     }
 
     const columns = getUrlParameter('columns', location.href)
-    if (title && typeof columns === 'string' &&
+    if (typeof columns === 'string' &&
         isNumeric(columns)
     ) {
         const col = Number(columns)
-        if (col % 1 === 0 && col > 0 && col < 5) {
+        if (col % 1 === 0 && col > 0) {
             result.columns = col
+            if (result.columns > conf.maxColumns) result.columns = conf.maxColumns
         }
     }
 
