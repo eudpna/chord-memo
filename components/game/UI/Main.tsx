@@ -1,5 +1,5 @@
 import Head from "next/head"
-import React, {  } from "react"
+import React, { } from "react"
 import { Gctx } from "../../../game/Gctx"
 import { sampleScores } from "../../../game/sample"
 import { A } from "../../A"
@@ -150,20 +150,18 @@ export const Main: React.FC<{
                     </div>
                 </div>
 
-
-                {gctx.shouldEnableWide() ?
-                    <div>
-                        <button className="p-2 px-4 rounded-full text-sm fixed z-0 bg-white text-black" style={{
-                            border: 'solid 1px #bbb',
-                            right: 10,
-                            bottom: 30,
-                        }} onClick={() => {
-                            gctx.openWide = true
-                            gctx.rerenderUI()
-                        }}>
-                            全画面表示<br />
-                        </button>
-                    </div> : null}
+                <div>
+                    <button className="p-2 px-4 rounded-full text-sm fixed z-0 bg-white text-black" style={{
+                        border: 'solid 1px #bbb',
+                        right: 10,
+                        bottom: 30,
+                    }} onClick={() => {
+                        gctx.openWide = true
+                        gctx.rerenderUI()
+                    }}>
+                        ワイド表示<br />
+                    </button>
+                </div>
             </div>
         }
 
