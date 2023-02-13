@@ -124,31 +124,18 @@ export const Main: React.FC<{
 
                         </div>
 
-                        <div className="mt-6 text-xs pb-12">
+                        <div className="mt-6 text-xs">
                             <A href="/list">利用可能なコード名の一覧</A>
                         </div>
 
+                        <div className="mt-1 text-xs pb-12">
+                            <A href="https://github.com/eudpna/chordmemo">GitHub</A>
+                        </div>
+
                     </div>
                 </div>
 
-                <div className="text-xs" style={{
-                    color: '#888'
-                }}>
-                    <div className="flex">
-                        <div className="flex-1 text-right pr-2">
-                            <span className="pr-2">
-                                <span className="pr-1" style={{
-                                    fontSize: '11px',
-                                }}>
-                                    最終更新
-                                </span>
-                                2023/02/03
-                            </span>
-                            by&nbsp;
-                            <A href="https://twitter.com/teiwv">@teiwv</A>
-                        </div>
-                    </div>
-                </div>
+              
 
                 <div>
                     <button className="p-2 px-4 rounded-full text-sm fixed z-0 bg-white text-black" style={{
