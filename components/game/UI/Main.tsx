@@ -63,26 +63,37 @@ export const Main: React.FC<{
                             <Score gctx={gctx} />
                         </div>
 
-                        <div className="mt-12">
-                            <Setting gctx={gctx} />
-                        </div>
+                        <div className="mt-12 flex">
 
-                        <div className="mt-6 pb-4">
-                            <div className="text-xs text-right" style={{
-                            }}>
-                                <A href={gctx.getChordShortcutURL()}>
-                                    この譜面をChordShortcutで開く
-                                </A>
+                            <div className="">
+                                <Setting gctx={gctx} />
                             </div>
 
-                            <div className="text-xs text-right pr-0.5" style={{
-                            }}>
-                                <A href='/'>
-                                    新規作成
-                                </A>
+                            <div className="flex-1">
+                                <div className="mt-6 pb-4">
+                                    <div className="text-xs text-right" style={{
+                                    }}>
+                                        <A href={gctx.getChordShortcutURL()}>
+                                            この譜面をChordShortcutで開く
+                                        </A>
+                                    </div>
+
+                                    <div className="text-xs text-right pr-0.5" style={{
+                                    }}>
+                                        <A href='/'>
+                                            新規作成
+                                        </A>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+
+
+
+
+
 
                 </div>
 
@@ -135,7 +146,7 @@ export const Main: React.FC<{
                     </div>
                 </div>
 
-              
+
 
                 <div>
                     <button className="p-2 px-4 rounded-full text-sm fixed z-0 bg-white text-black" style={{
