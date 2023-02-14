@@ -33,7 +33,7 @@ const Index: React.FC<{}> = () => {
    
     return <>
         <Head>            
-            <title>利用可能なコードの一覧 | こーどめも</title>
+            <title>利用可能なコードの一覧 | Chord Memo</title>
             {/* <meta name="viewport" content=""></meta> */}
         </Head>
         <div lang="ja" className="w-full h-full">

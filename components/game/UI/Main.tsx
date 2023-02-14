@@ -22,26 +22,28 @@ export const Main: React.FC<{
     return <div className="">
         {title ?
             <Head>
-                <title>{title} | こーどめも</title>
+                <title>{title} | Chord Memo</title>
             </Head> : null}
 
-        {gctx.resourceLoader.percent() !== 100 ?
-            <div className="right-0 top-0 fixed p-1 px-2">音声をロード中 {gctx.resourceLoader.percent()}%</div>
-            : null}
+    
 
         {gctx.openWide ? null :
             <div>
                 <div>
 
-                    <div className=" max-w-3xl mx-auto px-2" style={{
+                    <div className="flex max-w-3xl mx-auto px-2" style={{
 
                     }}>
-                        <A href="/" className="text-xl font-bold text-gray-700 inline-block">
-                            こーどめも
-                        </A>
-                        <div className="text-xs inline-block pl-2" style={{
+                        <a href="/"
+                        className="text-lg font-bold text-gray-700 block"
+                        target="_blank" rel="noopener noreferrer">
+                            Chord Memo
+                        </a>
+                        <div className="text-xs block pl-2" style={{
+                            color: '#555',
+                            lineHeight: 3.45,
                         }}>
-                            コード譜作成ツール
+                            コード譜作成
                         </div>
                     </div>
 
@@ -78,11 +80,11 @@ export const Main: React.FC<{
                                     <div className="text-xs text-right" style={{
                                     }}>
                                         <A href={gctx.getChordShortcutURL()}>
-                                            この譜面をChordShortcutで開く
+                                            Open in Chord Shortcut
                                         </A>
                                     </div>
 
-                                    <div className="text-xs text-right pr-0.5" style={{
+                                    <div className="text-xs text-right" style={{
                                     }}>
                                         <A href='/'>
                                             新規作成
@@ -177,6 +179,11 @@ export const Main: React.FC<{
         }}>
             <ChordDetail gctx={gctx} />
         </div>
+
+
+        {gctx.resourceLoader.percent() !== 100 ?
+            <div className="right-0 top-0 fixed p-1 px-2">音声をロード中 {gctx.resourceLoader.percent()}%</div>
+            : null}
 
     </div>
 }
