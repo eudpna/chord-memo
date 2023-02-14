@@ -193,7 +193,7 @@ export class Gctx {
         text = text.trim()
 
 
-        return `https://chordshortcut.nyaw.net/` +
+        return `https://chord-shortcut.nyaw.net/` +
             `?title=${encodeURIComponent(this.title.trim())}` +
             `&text=${encodeURIComponent(text)}`
     }
