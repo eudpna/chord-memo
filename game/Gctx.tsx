@@ -52,19 +52,8 @@ export class Gctx {
         return true
     }
 
-    copyURLToClipBoard() {
-        copyToClipboard(this.getShareURL())
-        .then(() => {
-            this.copiedMessage++
-            this.rerenderUI()
-            setTimeout(() => {
-                this.copiedMessage--
-                this.rerenderUI()
-            }, 2000);
-        })
-    }
 
-    getShareURL() {
+    getURL() {
         return location.href.replace(location.search, '') +
             `?title=${encodeURIComponent(this.title.trim())}` +
             `&text=${encodeURIComponent(this.text)}` +
@@ -74,7 +63,8 @@ export class Gctx {
     }
     
     updateURL() {
-        history.replaceState(null, null, this.getShareURL())
+        if (location.href === this.getURL()) return
+        history.replaceState(null, null, this.getURL())
     }
 
     setText(text: string) {
