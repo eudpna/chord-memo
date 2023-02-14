@@ -7,6 +7,7 @@ import { ChordImage } from './ChordImage'
 import { removeItemOnce } from '../../../game/lib/array'
 import { CloseIcon } from '../../icons/CloseIcon'
 import { chord2displayName } from '../../../game/lib/lib'
+import { SoundIcon } from '../../icons/SoundIcon'
 
 
 
@@ -66,7 +67,7 @@ export const ChordDetail: React.FC<{
                 width: 44,
                 height: 44,
                 cursor: 'pointer',
-                background: '#eee'
+                // background: '#eee'
             }} onClick={(e) => {
                 e.stopPropagation()
                 gctx.chordDetail = null
@@ -90,26 +91,37 @@ export const ChordDetail: React.FC<{
                     const isSelected = gctx.chordDetail.variation === i
                    
 
-                    return <div key={i} className="flex">
-                        <div className='relative inline-block' style={{
+                    return <div key={i} className="cursor-pointer flex relative rounded" style={{
+                        marginTop: 5,
+                        // backgroundColor: isSelected ? '#f4f4f4' : 'transparent'
+                    }}
+                        onClick={() => {
+                            gctx.changeVariationOfChord(gctx.chordDetail, i)
+                        }}
+                    >
+                        <div className='relative ' style={{
                             height: 80,
                             width: 80,
                             marginRight: 8,
-                            marginLeft: -8,
+                            // marginLeft: -8,
+                            marginLeft: 40,
 
                         }}>
                             <ChordImage gctx={props.gctx} chord={chord} variation={i} noName />
                         </div>
                        
-                        <div className='inline-block' style={{
+                        <div className='' style={{
                             // width: 'full',
-                            marginTop: 10,
+                            marginLeft: 15,
+                            marginTop: 7,
                             width: 120,
                         }}>
-                            <button className='rounded px-2 py-0.5 text-sm mb-0.5' style={{
-                                border: 'solid 1px rgb(156,163,175)',
+                            <button className='rounded-full text-sm mb-0.5 p-2' style={{
+                                border: 'solid 1px #999',
+                                width: 57,
                                 // border: 'solid black 1px',
-                                background: isPlaying ? '#bbb' : 'white'
+                                background: isPlaying ? '#ddd' : 'white'
+                                // background: 
                             }} onClick={() => {
                                 
                                 props.gctx.playingChords.push(playingChord)
@@ -122,33 +134,17 @@ export const ChordDetail: React.FC<{
                                     }, 3000);
                                 })
                             }}>
-                                {isPlaying ? '再生中…' : '音を再生' }
+                                <SoundIcon />
+                                {/* {isPlaying ? '再生中…' : '音を再生' } */}
                             </button>
                         </div>
-                        <div>
-                            {isSelected ? 
-                                <button className='rounded  py-1 mt-2' style={{
-                                    width: 80,
-                                    borderStyle: 'solid',
-                                    borderWidth: '1px',
-                                    color: theGreen,
-                                    borderColor: theGreen
-                                }}>
-                                    選択中
-                                </button>
-                            : 
-                            <button className='rounded  py-1 mt-2' style={{
-                                width: 80,
-                                    border: 'solid 1px rgb(156,163,175)',
-                            }}
-                            onClick={() => {
-                                gctx.changeVariationOfChord(gctx.chordDetail, i)
-                            }}
-                            >
-                                選択
-                            </button>}
-                            
-                        </div>
+
+                        {isSelected ? null :
+                        <div className='absolute inset-0' style={{
+                            background: 'rgba(255,255,255,0.8)',
+                            // pointerEvents: 'none',
+                        }}>
+                        </div>}
                        
                     </div>})
                 }

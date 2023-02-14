@@ -40,8 +40,7 @@ export class Gctx {
             else return textToScore(line.trim(), i)
         })
         this.score = lines
-        console.log(this.score)
-    }
+     }
 
     downloadText() {
         downloadText(this.title? sanitize(`コード譜 ${this.title}.txt`) : 'コード譜.txt', this.text)
@@ -49,7 +48,6 @@ export class Gctx {
 
     shouldEnableWide() {
         if (!window) return false
-        console.log('width', window.screen.width)
         if (window.screen.width < 1000) return false
         return true
     }
@@ -166,7 +164,6 @@ export class Gctx {
             return e.type === 'chord' && e.pointer.start === p.start
         })[0]
         this.chordDetail = thisChord as ScoreElementChord
-        console.log(this.chordDetail)
         this.rerenderUI()
     }
 

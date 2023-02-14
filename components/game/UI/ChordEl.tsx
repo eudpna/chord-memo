@@ -18,8 +18,6 @@ export const ChordEl: React.FC<{
     let variation = 0
 
     const isDetailOpened = gctx.chordDetail === props.scoreElementChord
-
-    // console.log(chordName, chord)
     
     if (typeof props.scoreElementChord.variation === 'number' && props.scoreElementChord.variation % 1 === 0 && 0 < props.scoreElementChord.variation && props.scoreElementChord.variation < chord.positions.length) {
         variation = props.scoreElementChord.variation
