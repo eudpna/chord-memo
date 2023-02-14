@@ -25,6 +25,10 @@ export const Main: React.FC<{
                 <title>{title} | こーどめも</title>
             </Head> : null}
 
+        {gctx.resourceLoader.percent() !== 100 ?
+            <div className="right-0 top-0 fixed p-1 px-2">音声をロード中 {gctx.resourceLoader.percent()}%</div>
+            : null}
+
         {gctx.openWide ? null :
             <div>
                 <div>

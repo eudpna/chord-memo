@@ -3,7 +3,8 @@ import { copyToClipboard, downloadText, strSplice } from "./lib/lib"
 import { Score, ScoreElementChord, textToScore, textToScoreSimpleNotation } from "./lib/score"
 import { playSounds } from "./lib/sound/sound"
 import { parseURL } from "./parseURL"
-
+import audioList from '../script/resource/audioList.json'
+import { ResourceLoader } from "../components/game/ResourceLoader"
 
 export type SoundType = 'guitar' | 'ukulele' | 'piano' | 'epiano' 
 
@@ -20,6 +21,17 @@ export class Gctx {
  
     // wide表示用
     openWide = false
+    
+    resourceLoader = new ResourceLoader()
+    
+    loadInstrumentAudio() {
+        audioList.map(src => {
+            this.resourceLoader.load(src)
+            .then((resource) => {
+                this.rerenderUI()
+            })
+        })
+    }
     
 
     makeScore() {
@@ -74,7 +86,9 @@ export class Gctx {
     }
 
     constructor(public rerenderUI: Function) {
-        this.loadURL()        
+        this.loadURL()
+
+        this.loadInstrumentAudio()
 
         this.makeScore()
         this.rerenderUI()

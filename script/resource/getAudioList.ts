@@ -15,7 +15,7 @@ dirs.forEach(dir => {
     const tmp = fs.readdirSync(path.join(imgDir, dir))
     tmp.map(file => {
         if (file.slice(0, 1) === '.') return
-        imgfiles.push(path.join(dir, file))
+        imgfiles.push(path.join('audios', dir, file))
     })
 })
 
