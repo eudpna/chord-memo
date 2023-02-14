@@ -144,7 +144,7 @@ export const Main: React.FC<{
                         </div>
 
                         <div className="mt-1 text-xs pb-12">
-                            <A href="https://github.com/eudpna/chordmemo">GitHub</A>
+                            <A href="https://github.com/eudpna/chord-memo">GitHub</A>
                         </div>
 
                     </div>

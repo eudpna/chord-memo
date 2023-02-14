@@ -1,6 +1,6 @@
 # Chord Memo
 
-[chordshortcut.nyaw.net](https://chordshortcut.nyaw.net/)
+[chord-memo.nyaw.net](https://chord-memo.nyaw.net/)
 
 ギターおよびウクレレコード譜の作成ツールです。
 
@@ -14,7 +14,7 @@
 ```sh
 yarn install
 yarn build
-yarn start
+yarn startl
 ```
 
 built on Next.js
